@@ -5,18 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89346c4c-d218-4cea-9906-792d9e2ee116" name="Changes" comment="new">
-      <change afterPath="$PROJECT_DIR$/View/Start_menu/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/Start_menu/Start_menu.pyproject" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/Start_menu/widget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Heloer.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Setting_helper/Setting_helper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/data_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config_helper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/create_database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Start_menu/Start_menu.pyproject" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Start_menu/widget.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,9 +44,17 @@
   &quot;keyToString&quot;: {
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/val/PycharmProjects/Helper/ViewModel/Setting_helper&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ViewModel/Setting_helper" />
+      <recent name="$PROJECT_DIR$/View/Setting_helper" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Helper" />
