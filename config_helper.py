@@ -1,7 +1,7 @@
 import os.path
 from configobj import ConfigObj
 
-config_file_name = 'config'
+config_file_name = 'helper_config'
 path_helper = (os.path.abspath(os.getcwd()))
 path_config_file_name = path_helper + '/' + config_file_name
 

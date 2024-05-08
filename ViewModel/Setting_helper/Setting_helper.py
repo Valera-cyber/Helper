@@ -1,19 +1,97 @@
 # from PyQt5.QtWidgets import QTableWidgetItem, QHeaderView, QAbstractItemView
 # from View.Setting_helper.Setting_helper import Ui_MainWindow
 # from View.Setting_helper.Setting_helper import QtWidgets
-# from ViewModel.All.Setting import config
 # from models.database import session
 # from models.model import Department, Usb_type, Branch, Office_type_equipment
 from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QDialog, QAbstractItemView, QTableWidgetItem, QHeaderView
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
 
-from View.Setting_helper.Setting_helper import Ui_MainWindow
+from Model.database import session
+from Model.model import Branch
+from View.Setting_helper.Setting_helper import Ui_Dialog
+from config_helper import config
 
 
-class Setting_helper(QtWidgets.QMainWindow):
+class Setting_helper(QtWidgets.QDialog):
     def __init__(self, parament=None):
-        super(Setting_helper, self).__init__()
-        self.ui = Ui_MainWindow()
+        # super(Setting_helper, self).__init__()
+        QDialog.__init__(self)
+        self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.s=session()
+
+        self.old_path_db=config['Setting_helper']['path_db']
+        self.ui.lineEdit_path.setText(self.old_path_db)
+
+        self.ui.btn_path.clicked.connect(self.clicked_btn_path)
+        self.ui.btn_save.clicked.connect(self.clicked_btn_save)
+        self.ui.btn_cancel.clicked.connect(self.close_setting)
+
+        self.load_data_from_sqlite()
+
+
+    def load_data_from_sqlite(self):
+        def print_table_branch():
+            branch = self.s.query(Branch).order_by(Branch.name)
+
+            numrows = branch.count()
+            numcols = 2
+            self.ui.table_branch.setColumnCount(numcols)
+            self.ui.table_branch.setRowCount(numrows)
+
+            self.ui.table_branch.setEditTriggers(QAbstractItemView.NoEditTriggers)  # запред редактирования
+            self.ui.table_branch.setColumnHidden(0, True)  # Скрываем столбец id
+            self.ui.table_branch.verticalHeader().setVisible(False)  # Убераем первую колонку
+            self.ui.table_branch.setHorizontalHeaderItem(1, QTableWidgetItem('Список филиалов'))
+            header = self.ui.table_branch.horizontalHeader()
+            header.setSectionResizeMode(1, QHeaderView.Stretch)
+
+            for index_row, i in enumerate(branch):
+                self.ui.table_branch.setItem(index_row, 0, QTableWidgetItem(str(i.id)))
+                self.ui.table_branch.setItem(index_row, 1, QTableWidgetItem(i.name))
+
+        print_table_branch()
+
+    def check_current_db(self):
+        if self.ui.lineEdit_path.text()!=self.old_path_db:
+            quit()
+    def clicked_btn_save(self):
+        config['Setting_helper']['path_db'] = self.ui.lineEdit_path.text()
+        config.write()
+        self.s.commit()
+        self.check_current_db()
+        self.close()
+
+    def close_setting(self):
+        self.s.close()
+        self.close()
+
+    def clicked_btn_path(self):
+        filepath = QtWidgets.QFileDialog.getOpenFileName(None, 'Пожалуйста выберите базу данных.')
+        self.ui.lineEdit_path.setText(filepath[0])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         # self.s = session()
 
         # self.ui.btn_save.clicked.connect(self.clicked_btn_save)
