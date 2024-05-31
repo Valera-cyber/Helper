@@ -11,4 +11,21 @@ if os.path.exists(path_config_file_name) == False:
 
     config['Setting_helper'] = {'path_db': ''}
 
+    config['User'] = {
+        'checkBox_branch':'False',
+        'checkBox_department':'False',
+        'checkBox_system':'False',
+        'checkBox_szi':'False',
+
+        'checked_branch': '',
+        'checked_department':'',
+        'checked_system':'',
+        'checked_szi':'',
+
+        'checkB_statusOn':'True',
+        'checkB_statusOff':'True',
+
+        'current_indexPage':''
+        }
+
     config.write()

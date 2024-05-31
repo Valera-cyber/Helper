@@ -9,7 +9,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 from Model.database import session
-from Model.model import Branch
+from Model.model import Branch, Department
 from View.Setting_helper.Setting_helper import Ui_Dialog
 from config_helper import config
 
@@ -29,30 +29,110 @@ class Setting_helper(QtWidgets.QDialog):
         self.ui.btn_save.clicked.connect(self.clicked_btn_save)
         self.ui.btn_cancel.clicked.connect(self.close_setting)
 
-        self.load_data_from_sqlite()
+        self.print_table_branch()
+        self.print_table_department()
+
+        self.ui.btn_add_edit_branch.setText('Добавить')
+        self.ui.table_branch.itemDoubleClicked.connect(self.doubleClicked_table_branch)
+        self.ui.table_branch.currentCellChanged.connect(self.currentCellChanged_branch)
+        self.ui.btn_add_edit_branch.clicked.connect(self.clicked_btn_add_edit_branch)
+
+        self.ui.btn_add_edit.setText('Добавить')
+        self.ui.table_department.itemDoubleClicked.connect(self.doubleClicked_table_department)
+        self.ui.table_department.currentCellChanged.connect(self.currentCellChanged_table_department)
+        self.ui.btn_add_edit.clicked.connect(self.clicked_btn_add_edit)
 
 
-    def load_data_from_sqlite(self):
-        def print_table_branch():
-            branch = self.s.query(Branch).order_by(Branch.name)
 
-            numrows = branch.count()
-            numcols = 2
-            self.ui.table_branch.setColumnCount(numcols)
-            self.ui.table_branch.setRowCount(numrows)
+    def print_table_branch(self):
+        branch = self.s.query(Branch).order_by(Branch.name)
 
-            self.ui.table_branch.setEditTriggers(QAbstractItemView.NoEditTriggers)  # запред редактирования
-            self.ui.table_branch.setColumnHidden(0, True)  # Скрываем столбец id
-            self.ui.table_branch.verticalHeader().setVisible(False)  # Убераем первую колонку
-            self.ui.table_branch.setHorizontalHeaderItem(1, QTableWidgetItem('Список филиалов'))
-            header = self.ui.table_branch.horizontalHeader()
-            header.setSectionResizeMode(1, QHeaderView.Stretch)
+        numrows = branch.count()
+        numcols = 2
+        self.ui.table_branch.setColumnCount(numcols)
+        self.ui.table_branch.setRowCount(numrows)
 
-            for index_row, i in enumerate(branch):
-                self.ui.table_branch.setItem(index_row, 0, QTableWidgetItem(str(i.id)))
-                self.ui.table_branch.setItem(index_row, 1, QTableWidgetItem(i.name))
+        self.ui.table_branch.setEditTriggers(QAbstractItemView.NoEditTriggers)  # запред редактирования
+        self.ui.table_branch.setColumnHidden(0, True)  # Скрываем столбец id
+        self.ui.table_branch.verticalHeader().setVisible(False)  # Убераем первую колонку
+        self.ui.table_branch.setHorizontalHeaderItem(1, QTableWidgetItem('Список филиалов'))
+        header = self.ui.table_branch.horizontalHeader()
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
 
-        print_table_branch()
+        for index_row, i in enumerate(branch):
+            self.ui.table_branch.setItem(index_row, 0, QTableWidgetItem(str(i.id)))
+            self.ui.table_branch.setItem(index_row, 1, QTableWidgetItem(i.name))
+    def clicked_btn_add_edit_branch(self):
+        if self.ui.lineEdit_add_edit_branch.text() != '':
+            if self.ui.btn_add_edit_branch.text() == 'Добавить':
+                branch = Branch(name=self.ui.lineEdit_add_edit_branch.text())
+            else:
+                id_branch = self.ui.table_branch.item(self.ui.table_branch.currentRow(), 0).text()
+                branch = self.s.query(Branch).filter_by(id=id_branch).one()
+                branch.name = self.ui.lineEdit_add_edit_branch.text()
+                self.ui.btn_add_edit_branch.setText('Добавить')
+            self.s.add(branch)
+            self.ui.lineEdit_add_edit_branch.clear()
+            self.print_table_branch()
+
+    def currentCellChanged_branch(self):
+        self.ui.btn_add_edit_branch.setText('Добавить')
+        self.ui.lineEdit_add_edit_branch.clear()
+
+    def doubleClicked_table_branch(self):
+        if self.ui.btn_add_edit_branch.text() == 'Добавить':
+            self.ui.btn_add_edit_branch.setText('Изменить')
+            self.ui.lineEdit_add_edit_branch.setText(
+                self.ui.table_branch.item(self.ui.table_branch.currentRow(), 1).text())
+        else:
+            self.ui.btn_add_edit_branch.setText('Добавить')
+            self.ui.table_branch.clearSelection()
+
+
+
+
+    def print_table_department(self):
+        departments = self.s.query(Department).order_by(Department.name)
+
+        numrows = departments.count()
+        numcols = 2
+        self.ui.table_department.setColumnCount(numcols)
+        self.ui.table_department.setRowCount(numrows)
+
+        self.ui.table_department.setEditTriggers(QAbstractItemView.NoEditTriggers)  # запред редактирования
+        self.ui.table_department.setColumnHidden(0, True)  # Скрываем столбец id
+        self.ui.table_department.verticalHeader().setVisible(False)  # Убераем первую колонку
+        self.ui.table_department.setHorizontalHeaderItem(1, QTableWidgetItem('Список служб'))
+        header = self.ui.table_department.horizontalHeader()
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
+
+        for index_row, i in enumerate(departments):
+            self.ui.table_department.setItem(index_row, 0, QTableWidgetItem(str(i.id)))
+            self.ui.table_department.setItem(index_row, 1, QTableWidgetItem(i.name))
+    def clicked_btn_add_edit(self):
+        if self.ui.lineEdit_department.text() != '':
+            if self.ui.btn_add_edit.text() == 'Добавить':
+                department = Department(name=self.ui.lineEdit_department.text())
+            else:
+                id_department = self.ui.table_department.item(self.ui.table_department.currentRow(), 0).text()
+                department = self.s.query(Department).filter_by(id=id_department).one()
+                department.name = self.ui.lineEdit_department.text()
+                self.ui.btn_add_edit.setText('Добавить')
+            self.s.add(department)
+            self.ui.lineEdit_department.clear()
+            self.print_table_department()
+    def currentCellChanged_table_department(self):
+        self.ui.btn_add_edit.setText('Добавить')
+        self.ui.lineEdit_department.clear()
+    def doubleClicked_table_department(self):
+        if self.ui.btn_add_edit.text() == 'Добавить':
+            self.ui.btn_add_edit.setText('Изменить')
+            self.ui.lineEdit_department.setText(
+                self.ui.table_department.item(self.ui.table_department.currentRow(), 1).text())
+        else:
+            self.ui.btn_add_edit.setText('Добавить')
+            self.ui.table_department.clearSelection()
+
 
     def check_current_db(self):
         if self.ui.lineEdit_path.text()!=self.old_path_db:
