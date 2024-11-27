@@ -11,6 +11,7 @@ from View.main_container.new_item import Ui_Dialog
 from ViewModel.PaddingDelegate import PaddingDelegate
 
 from ViewModel.User import user_main
+from config_helper import config
 
 
 class User_new(QtWidgets.QDialog):
@@ -29,10 +30,12 @@ class User_new(QtWidgets.QDialog):
 
         self.load_branc_department()
 
-        self.ui.btn_cancel.clicked.connect(self.close)
+        self.ui.btn_cancel.clicked.connect(self.clicked_btn_cancel)
         self.ui.btn_save.clicked.connect(self.clicked_btn_save)
 
         self.setFixedSize(450, 460)
+
+        self.load_defolt_branch_department()
 
         if current_employeeId == None:
             self.ui.label_name.setText('Пользователь:')
@@ -61,6 +64,17 @@ class User_new(QtWidgets.QDialog):
             self.ui.tw_item.setItem(10, 1, QTableWidgetItem(user[0].armName))
             self.checkBox_status.setChecked(user[0].statusWork)
             self.ui.tw_item.item(2, 1).setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable)  # запрет редактирования
+
+    def load_defolt_branch_department(self):
+        defolt_branch = config['User']['defolt_branch']
+        if defolt_branch=='':
+            defolt_branch=-1
+        defolt_department= config['User']['defolt_department']
+        if defolt_department=='':
+            defolt_department=-1
+
+        self.comboBox_branch.setCurrentIndex(int(defolt_branch))
+        self.comboBox_department.setCurrentIndex(int(defolt_department))
 
     def load_branc_department(self):
         branches = self.s.query(Branch)
@@ -196,9 +210,15 @@ class User_new(QtWidgets.QDialog):
 
                 self.s.add(edit_user)
                 self.s.commit()
+                self.employeeId=self.current_employeeId
                 self.close()
 
+            config['User']['defolt_branch'] = self.comboBox_branch.currentIndex()
+            config['User']['defolt_department'] = self.comboBox_department.currentIndex()
 
+    def clicked_btn_cancel(self):
+        self.employeeId = None
+        self.close()
 
 
 style = '''

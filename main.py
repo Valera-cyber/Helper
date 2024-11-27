@@ -1,6 +1,9 @@
 import os
 import sys
 
+from ViewModel.Equipment.equipment_main import Equipment_main
+from ViewModel.Skr.skr_main import Skr_main
+from ViewModel.Usb.usb_main import Usb_main
 from ViewModel.User.user_main import User_main
 from config_helper import config
 from PyQt5 import QtWidgets
@@ -18,15 +21,33 @@ class Start_menu(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.btn_user.clicked.connect(self.clicked_btn_user)
+        self.ui.btn_usb.clicked.connect(self.clicked_btn_usb)
         self.ui.btn_setting.clicked.connect(self.clicked_btn_setting)
+        self.ui.btn_equipment.clicked.connect(self.clicked_btn_equipment)
+        self.ui.btn_skr.clicked.connect(self.clicked_btn_skr)
 
         self.path_helper = (os.path.abspath(os.getcwd()))
 
         self.read_config()
 
+        self.export_folders()
+
+        # self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint)
+    def clicked_btn_skr(self):
+        self.skr=Skr_main(self.path_helper)
+        self.skr.show()
+
     def clicked_btn_user(self):
         self.user = User_main(self.path_helper)
         self.user.show()
+
+    def clicked_btn_usb(self):
+        self.usb = Usb_main(self.path_helper)
+        self.usb.show()
+
+    def clicked_btn_equipment(self):
+        self.equipment = Equipment_main(self.path_helper)
+        self.equipment.show()
 
 
 
@@ -43,6 +64,14 @@ class Start_menu(QtWidgets.QMainWindow):
                 self.desable_button()
         else:
             self.enabled_button()
+
+    def export_folders(self):
+        path_export = config['Helper_export']['path_export']
+        if path_export=='':
+            if not os.path.isdir(self.path_helper+'/'+'Helper_export'):
+                os.mkdir(self.path_helper+'/'+'Helper_export')
+                config['Helper_export']['path_export']=self.path_helper+'/'+'Helper_export'
+                config.write()
 
     def enabled_button(self):
         self.ui.btn_skr.setEnabled(True)
@@ -62,6 +91,8 @@ class Start_menu(QtWidgets.QMainWindow):
         setting_helper = Setting_helper(self)
         setting_helper.exec_()
         self.read_config()
+
+
 
 
 app = QtWidgets.QApplication([])

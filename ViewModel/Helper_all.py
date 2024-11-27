@@ -5,46 +5,45 @@ from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 from sqlalchemy import func
 import re
-# from ViewModel.All.Docx_replace import replace_text
-# from models.database import session
-# from models.model import Office_equipment, Skr, SziAccounting, SziFileUninst, SziType, SziEquipment
+from Model.database import session
+from Model.model import Office_equipment, Skr, SziEquipment
 
 
 class Helper_all():
-    # def info_equipment_act_szi(list_equipmentId: list,id_SziAccounting:int) -> str:
-    #     '''Получаем информацию о компьютерах
-    #     Принимает id_equipment возвращает строку
-    #     -ANT-ATC-1, СКР+ 89*6454281 от 25.03.2016, расположен Здание канцелярии каб. № 7'''
-    #     s = session()
-    #     info_equipment = ''
-    #     for i in list_equipmentId:
-    #         temp = s.query(func.max(Office_equipment.id), Office_equipment.name_equipment,
-    #                             Office_equipment.location, Skr.numberSkr, Skr.startDate, SziEquipment.sziAccounting_id). \
-    #             select_from(Office_equipment). \
-    #             join(Skr). \
-    #             join(SziEquipment).\
-    #             filter(SziEquipment.sziAccounting_id==id_SziAccounting).\
-    #             filter(Office_equipment.id == i).one()
-    #
-    #         if temp[1] == None:  # None тогда когда в журнале СКР отсутствует пломба для данного арм
-    #             temp1 = s.query(Office_equipment.name_equipment, Office_equipment.location). \
-    #                 filter(Office_equipment.id == i).one()
-    #             name_equipment = temp1[0]
-    #             location = temp1[1]
-    #             numberSkr = ''
-    #             dateSkr = ''
-    #         else:
-    #             name_equipment = temp[1]
-    #             location = temp[2]
-    #             numberSkr = temp[3]
-    #             dateSkr = (temp[4].strftime('%d.%m.%Y'))
-    #
-    #         if location == None:
-    #             location = ''
-    #
-    #         info_equipment += name_equipment + ', ' + 'СКР+ ' + numberSkr + ' от ' + dateSkr + ', расположен ' + location + '; ' + '\n'
-    #
-    #     return info_equipment
+    def info_equipment_act_szi(list_equipmentId: list,id_SziAccounting:int) -> str:
+        '''Получаем информацию о компьютерах
+        Принимает id_equipment возвращает строку
+        -ANT-ATC-1, СКР+ 89*6454281 от 25.03.2016, расположен Здание канцелярии каб. № 7'''
+        s = session()
+        info_equipment = ''
+        for i in list_equipmentId:
+            temp = s.query(func.max(Office_equipment.id), Office_equipment.name_equipment,
+                                Office_equipment.location, Skr.numberSkr, Skr.startDate, SziEquipment.sziAccounting_id). \
+                select_from(Office_equipment). \
+                join(Skr). \
+                join(SziEquipment).\
+                filter(SziEquipment.sziAccounting_id==id_SziAccounting).\
+                filter(Office_equipment.id == i).one()
+
+            if temp[1] == None:  # None тогда когда в журнале СКР отсутствует пломба для данного арм
+                temp1 = s.query(Office_equipment.name_equipment, Office_equipment.location). \
+                    filter(Office_equipment.id == i).one()
+                name_equipment = temp1[0]
+                location = temp1[1]
+                numberSkr = ''
+                dateSkr = ''
+            else:
+                name_equipment = temp[1]
+                location = temp[2]
+                numberSkr = temp[3]
+                dateSkr = (temp[4].strftime('%d.%m.%Y'))
+
+            if location == None:
+                location = ''
+
+            info_equipment += name_equipment + ', ' + 'СКР+ ' + numberSkr + ' от ' + dateSkr + ', расположен ' + location + '; ' + '\n'
+
+        return info_equipment
 
     def get_date_full(date_act: str) -> str:
         '''Получаем дату dd.mmm.yyyy возвращаем в виде 01 января 2024 года'''
@@ -148,10 +147,10 @@ class Helper_all():
         '''rezult-ФИО, rezult-И.О. Ф, rezult-Ф И.О.'''
         rezult=user_fio
 
-        if display=='Ф И.О.':
+        if display=='Ф И.О.:':
             rezult=re.sub(r'\b(\w+)\b\s+\b(\w)\w*\b\s+\b(\w)\w*\b', r'\1 \2.\3.', user_fio)
 
-        elif display=='И.О. Ф':
+        elif display=='И.О. Ф:':
             rezult=re.sub(r'\b(\w+)\b\s+\b(\w)\w*\b\s+\b(\w)\w*\b', r'\2.\3. \1', user_fio)
 
         return rezult

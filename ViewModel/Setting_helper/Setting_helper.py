@@ -20,9 +20,9 @@ class Setting_helper(QtWidgets.QDialog):
         QDialog.__init__(self)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        self.s=session()
+        self.s = session()
 
-        self.old_path_db=config['Setting_helper']['path_db']
+        self.old_path_db = config['Setting_helper']['path_db']
         self.ui.lineEdit_path.setText(self.old_path_db)
 
         self.ui.btn_path.clicked.connect(self.clicked_btn_path)
@@ -42,7 +42,7 @@ class Setting_helper(QtWidgets.QDialog):
         self.ui.table_department.currentCellChanged.connect(self.currentCellChanged_table_department)
         self.ui.btn_add_edit.clicked.connect(self.clicked_btn_add_edit)
 
-
+        self.ui.lineEdit_pathExport.setText(config['Helper_export']['path_export'])
 
     def print_table_branch(self):
         branch = self.s.query(Branch).order_by(Branch.name)
@@ -62,6 +62,7 @@ class Setting_helper(QtWidgets.QDialog):
         for index_row, i in enumerate(branch):
             self.ui.table_branch.setItem(index_row, 0, QTableWidgetItem(str(i.id)))
             self.ui.table_branch.setItem(index_row, 1, QTableWidgetItem(i.name))
+
     def clicked_btn_add_edit_branch(self):
         if self.ui.lineEdit_add_edit_branch.text() != '':
             if self.ui.btn_add_edit_branch.text() == 'Добавить':
@@ -88,9 +89,6 @@ class Setting_helper(QtWidgets.QDialog):
             self.ui.btn_add_edit_branch.setText('Добавить')
             self.ui.table_branch.clearSelection()
 
-
-
-
     def print_table_department(self):
         departments = self.s.query(Department).order_by(Department.name)
 
@@ -109,6 +107,7 @@ class Setting_helper(QtWidgets.QDialog):
         for index_row, i in enumerate(departments):
             self.ui.table_department.setItem(index_row, 0, QTableWidgetItem(str(i.id)))
             self.ui.table_department.setItem(index_row, 1, QTableWidgetItem(i.name))
+
     def clicked_btn_add_edit(self):
         if self.ui.lineEdit_department.text() != '':
             if self.ui.btn_add_edit.text() == 'Добавить':
@@ -121,9 +120,11 @@ class Setting_helper(QtWidgets.QDialog):
             self.s.add(department)
             self.ui.lineEdit_department.clear()
             self.print_table_department()
+
     def currentCellChanged_table_department(self):
         self.ui.btn_add_edit.setText('Добавить')
         self.ui.lineEdit_department.clear()
+
     def doubleClicked_table_department(self):
         if self.ui.btn_add_edit.text() == 'Добавить':
             self.ui.btn_add_edit.setText('Изменить')
@@ -133,10 +134,10 @@ class Setting_helper(QtWidgets.QDialog):
             self.ui.btn_add_edit.setText('Добавить')
             self.ui.table_department.clearSelection()
 
-
     def check_current_db(self):
-        if self.ui.lineEdit_path.text()!=self.old_path_db:
+        if self.ui.lineEdit_path.text() != self.old_path_db:
             quit()
+
     def clicked_btn_save(self):
         config['Setting_helper']['path_db'] = self.ui.lineEdit_path.text()
         config.write()
@@ -151,26 +152,6 @@ class Setting_helper(QtWidgets.QDialog):
     def clicked_btn_path(self):
         filepath = QtWidgets.QFileDialog.getOpenFileName(None, 'Пожалуйста выберите базу данных.')
         self.ui.lineEdit_path.setText(filepath[0])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         # self.s = session()
 

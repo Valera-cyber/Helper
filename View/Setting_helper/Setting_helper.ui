@@ -30,7 +30,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Укажите путь к базе данных:</string>
+          <string>Путь к базе данных:</string>
          </property>
         </widget>
        </item>
@@ -41,6 +41,27 @@
          </item>
          <item>
           <widget class="QPushButton" name="btn_path">
+           <property name="text">
+            <string>Открыть</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Путь к рабочему каталогу:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QLineEdit" name="lineEdit_pathExport"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="pushButton_2">
            <property name="text">
             <string>Открыть</string>
            </property>

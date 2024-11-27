@@ -4,16 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89346c4c-d218-4cea-9906-792d9e2ee116" name="Changes" comment="base OK">
-      <change afterPath="$PROJECT_DIR$/ViewModel/Helper_all.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/PaddingDelegate.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/User/user_main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/User/user_new.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/setting_view.py" afterDir="false" />
+    <list default="true" id="89346c4c-d218-4cea-9906-792d9e2ee116" name="Changes" comment="user">
+      <change afterPath="$PROJECT_DIR$/Form_print/Inst_SZI.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Form_print/Reg_form.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Form_print/Uninst_SZI.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Icons/unwrap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Icons/wrap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Docx_replace.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_new.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_chengUser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_new.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/main_load.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stylesheet.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Helper_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Helper_all.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/Setting_helper/Setting_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Setting_helper/Setting_helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/user_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/user_new.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/setting_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/setting_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/config_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper_config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,24 +55,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "Python.user_main.executor": "Run",
-    "Python.user_new.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/val/PycharmProjects/Helper/ViewModel",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.user_main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.user_new.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/val/PycharmProjects/Helper&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.project&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/ViewModel" />
       <recent name="$PROJECT_DIR$/Icons" />
       <recent name="$PROJECT_DIR$/Model" />
       <recent name="$PROJECT_DIR$/ViewModel/Setting_helper" />
-      <recent name="$PROJECT_DIR$/View/Setting_helper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Icons/User" />
@@ -79,6 +95,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Helper" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -133,6 +171,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.user_new" />
         <item itemvalue="Python.user_main" />
       </list>
@@ -194,7 +233,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715153264675</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="user">
+      <option name="closed" value="true" />
+      <created>1717163677728</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717163677728</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,6 +260,7 @@
     <MESSAGE value="base1" />
     <MESSAGE value="base" />
     <MESSAGE value="base OK" />
-    <option name="LAST_COMMIT_MESSAGE" value="base OK" />
+    <MESSAGE value="user" />
+    <option name="LAST_COMMIT_MESSAGE" value="user" />
   </component>
 </project>
