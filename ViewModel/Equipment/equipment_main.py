@@ -694,6 +694,7 @@ class Equipment_main(QtWidgets.QMainWindow):
 
     def load_equipment(self):
         checked_branch = config['Equipment']['checked_branch']
+        checked_branch=list(checked_branch)
         checked_department = config['Equipment']['checked_department']
         checked_department = list(checked_department)
 

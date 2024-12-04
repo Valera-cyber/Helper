@@ -11,7 +11,7 @@ if os.path.exists(path_config_file_name) == False:
 
     config['Setting_helper'] = {'path_db': ''}
 
-    config['Helper_export'] = {'path_export': ''}
+    config['Helper_export'] = {'path_export': path_helper}
 
     config['User'] = {
         'checkBox_branch':'False',
@@ -50,6 +50,22 @@ if os.path.exists(path_config_file_name) == False:
         }
 
     config['Equipment'] = {
+        'checkBox_branch':'False',
+        'checkBox_department':'False',
+
+        'checked_branch': '',
+        'checked_department':'',
+
+        'checkB_statusOn':'True',
+        'checkB_statusOff':'True',
+
+        'current_indexPage':'',
+
+        'defolt_branch':'',
+        'defolt_department':''
+        }
+
+    config['Skr'] = {
         'checkBox_branch':'False',
         'checkBox_department':'False',
 

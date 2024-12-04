@@ -44,6 +44,23 @@ class Setting_view(QtWidgets.QDialog):
 
             self.ui.btn_save.clicked.connect(self.clicked_btn_saveUser)
 
+
+        def skr(self):
+            self.ui.tabWidget.setTabVisible(2, False)
+            self.ui.tabWidget.setTabVisible(3, False)
+
+            self.create_tW_branch()
+            self.create_tW_department()
+
+            self.load_tW_branch('Skr')
+            self.load_tW_department('Skr')
+
+            self.load_checkBoks_branch('Skr')
+            self.load_checkBox_department('Skr')
+            self.load_status('Skr')
+
+            self.ui.btn_save.clicked.connect(self.clicked_btn_saveSkr)
+
         def equipment(self):
             self.ui.tabWidget.setTabVisible(2, False)
             self.ui.tabWidget.setTabVisible(3, False)
@@ -101,6 +118,14 @@ class Setting_view(QtWidgets.QDialog):
             equipment(self)
             self.load_indexPage('Equipment')
 
+        elif container=='skr':
+            self.ui.label_name.setText('Сортировка и фильтр.')
+            self.ui.label_nameStatus.setText('Статус пломбы - наклейки:')
+            self.ui.checkB_statusOn.setText('Актуален')
+            self.ui.checkB_statusOff.setVisible(False)
+
+            skr(self)
+            self.load_indexPage('Skr')
 
         self.first_boot = False
 
@@ -259,6 +284,20 @@ class Setting_view(QtWidgets.QDialog):
                 id = name_tW.item(i, 0).text()
                 list_check_id.append(id)
         return list_check_id
+
+    def clicked_btn_saveSkr(self):
+        config['Skr']['checked_branch'] = self.get_Checked_id_tW(self.ui.tW_branch)
+        config['Skr']['checked_department'] = self.get_Checked_id_tW(self.ui.tW_department)
+
+        config['Skr']['current_indexPage'] = self.ui.tabWidget.currentIndex()
+        config['Skr']['checkBox_branch'] = self.ui.checkB_branch.isChecked()
+        config['Skr']['checkBox_department'] = self.ui.checkB_department.isChecked()
+
+        config['Skr']['checkB_statusOn'] = self.ui.checkB_statusOn.isChecked()
+        config['Skr']['checkB_statusOff'] = self.ui.checkB_statusOff.isChecked()
+
+        config.write()
+        self.close()
 
     def clicked_btn_saveEquipment(self):
         config['Equipment']['checked_branch'] = self.get_Checked_id_tW(self.ui.tW_branch)

@@ -4,32 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89346c4c-d218-4cea-9906-792d9e2ee116" name="Changes" comment="user">
-      <change afterPath="$PROJECT_DIR$/Form_print/Inst_SZI.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Form_print/Reg_form.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Form_print/Uninst_SZI.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Icons/unwrap.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Icons/wrap.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Docx_replace.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_new.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_chengUser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_new.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/main_load.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stylesheet.py" afterDir="false" />
+    <list default="true" id="89346c4c-d218-4cea-9906-792d9e2ee116" name="Changes" comment="skr">
+      <change afterPath="$PROJECT_DIR$/View/Skr/Skr_open.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/Skr/Skr_open.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Skr/Skr_open.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_new.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Helper_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Helper_all.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Setting_helper/Setting_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Setting_helper/Setting_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/user_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/user_new.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Equipment/equipment_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Skr/skr_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Usb/usb_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/setting_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/setting_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/config_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper_db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +48,7 @@
     &quot;Python.user_new.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/val/PycharmProjects/Helper&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/val/PycharmProjects/Helper/View/Skr&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.project&quot;
   }
 }</component>
@@ -241,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717163677728</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="skr">
+      <option name="closed" value="true" />
+      <created>1732695058584</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732695058584</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -261,6 +254,7 @@
     <MESSAGE value="base" />
     <MESSAGE value="base OK" />
     <MESSAGE value="user" />
-    <option name="LAST_COMMIT_MESSAGE" value="user" />
+    <MESSAGE value="skr" />
+    <option name="LAST_COMMIT_MESSAGE" value="skr" />
   </component>
 </project>
