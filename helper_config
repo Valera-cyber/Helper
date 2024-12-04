@@ -1,0 +1,48 @@
+[Setting_helper]
+path_db = /home/val/Рабочий стол/1base.db
+[Helper_export]
+path_export = /home/val/PycharmProjects/Helper
+[User]
+checkBox_branch = False
+checkBox_department = False
+checkBox_system = False
+checkBox_szi = False
+checked_branch = ""
+checked_department = ""
+checked_system = ""
+checked_szi = ""
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = ""
+defolt_branch = ""
+defolt_department = ""
+[Usb]
+checkBox_branch = True
+checkBox_department = True
+checked_branch = 1, 2, 3
+checked_department = 5, 2, 6, 1, 4, 3, 10, 9, 8, 13, 11, 7, 12, 15, 14
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = 1
+defolt_branch = ""
+defolt_department = ""
+[Equipment]
+checkBox_branch = False
+checkBox_department = False
+checked_branch = ,
+checked_department = ,
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = 0
+defolt_branch = ""
+defolt_department = ""
+[Skr]
+checkBox_branch = True
+checkBox_department = True
+checked_branch = 1, 2, 3
+checked_department = 5, 2, 6, 1, 4, 3, 10, 9, 8, 13, 11, 7, 12, 15, 14
+checkB_statusOn = True
+checkB_statusOff = False
+current_indexPage = 0
+defolt_branch = ""
+defolt_department = ""
