@@ -3,6 +3,7 @@ import sys
 
 from ViewModel.Equipment.equipment_main import Equipment_main
 from ViewModel.Skr.skr_main import Skr_main
+from ViewModel.Szi.szi_main import Szi_main
 from ViewModel.Usb.usb_main import Usb_main
 from ViewModel.User.user_main import User_main
 from config_helper import config
@@ -25,6 +26,7 @@ class Start_menu(QtWidgets.QMainWindow):
         self.ui.btn_setting.clicked.connect(self.clicked_btn_setting)
         self.ui.btn_equipment.clicked.connect(self.clicked_btn_equipment)
         self.ui.btn_skr.clicked.connect(self.clicked_btn_skr)
+        self.ui.btn_szi.clicked.connect(self.clicked_btn_szi)
 
         self.path_helper = (os.path.abspath(os.getcwd()))
 
@@ -33,6 +35,10 @@ class Start_menu(QtWidgets.QMainWindow):
         self.export_folders()
 
         # self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint)
+    def clicked_btn_szi(self):
+        self.szi=Szi_main(self.path_helper)
+        self.szi.show()
+
     def clicked_btn_skr(self):
         self.skr=Skr_main(self.path_helper)
         self.skr.show()

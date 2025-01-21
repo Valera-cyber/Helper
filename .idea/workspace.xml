@@ -4,17 +4,110 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89346c4c-d218-4cea-9906-792d9e2ee116" name="Changes" comment="skr">
-      <change afterPath="$PROJECT_DIR$/View/Skr/Skr_open.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/Skr/Skr_open.ui" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Skr/Skr_open.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_new.py" afterDir="false" />
+    <list default="true" id="89346c4c-d218-4cea-9906-792d9e2ee116" name="Changes" comment="Szi-ok">
+      <change afterPath="$PROJECT_DIR$/Model/newTab_sortView.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Szi/szi_main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Szi/szi_new.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Szi/szi_sorView.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ViewStart_menuStart_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/.ViewStart_menuStart_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export_files/users.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Export_files/users.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Form_print/Inst_SZI.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Form_print/Inst_SZI.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Form_print/Reg_form.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Form_print/Reg_form.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Form_print/Uninst_SZI.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Form_print/Uninst_SZI.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Equipments.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Equipments.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 22.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 22.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 24.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 25.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 25.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 32.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 32.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 37.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 37.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 39.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 39.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 40.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 40.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 6.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 6.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 106.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 106.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 33.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 33.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 52.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 52.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 90.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 90.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/USB/1-qqqqqqqqqqqqqqqqq1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/USB/1-qqqqqqqqqqqqqqqqq1.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/USB/1-Бахарев Д.Н..docx" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/USB/1-Бахарев Д.Н..docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/USB/10102024090313.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/USB/10102024090313.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/USB/9-Злобина О.В..docx" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/USB/9-Злобина О.В..docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/USB/Equipment.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/USB/Equipment.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/USB/USB.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/USB/USB.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/USB/new.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/USB/new.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper_export/USB/Кузнецова О.В..pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Helper_export/USB/Кузнецова О.В..pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/Usb/addUsb.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/Usb/addUsb.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/Usb/chengeUsb.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/Usb/chengeUsb.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/Usb/editUsb.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/Usb/editUsb.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/Usb/searchUsb.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/Usb/searchUsb.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/User/add-user-male-40.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/User/add-user-male-40.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/User/registration-40.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/User/registration-40.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/User/search-user-40.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/User/search-user-40.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/add.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/add.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/add.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/add.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/cheng.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/cheng.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/download.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/download.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/edit.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/edit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/equipment.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/equipment.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/export.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/export.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/install.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/install.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/microsoft-excel-40.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/microsoft-excel-40.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/print.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/print.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/skr.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/skr.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/sorts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/sorts.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/uninstall.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/uninstall.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/unwrap.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/unwrap.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/usb.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/usb.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/user.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/user.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Icons/wrap.png" beforeDir="false" afterPath="$PROJECT_DIR$/Icons/wrap.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Skr/Skr.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Skr/Skr.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/Setting_helper/Setting_helper.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Setting_helper/Setting_helper_old.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/Setting_helper/Setting_helper_old.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Skr/Skr_open.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/Skr/Skr_open.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Skr/Skr_open.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/Skr/Skr_open.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Start_menu/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/View/Start_menu/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Start_menu/Start_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/Start_menu/Start_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Start_menu/Start_menu.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/Start_menu/Start_menu.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/main_container/container.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/container.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/main_container/container.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/container.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/main_container/new_item.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/new_item.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/main_container/new_item.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/new_item.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/main_container/setting_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/setting_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/main_container/setting_view.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/setting_view.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Docx_replace.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Docx_replace.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/Equipment/equipment_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Equipment/equipment_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_new.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Helper_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Helper_all.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/PaddingDelegate.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/PaddingDelegate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Setting_helper/Setting_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Setting_helper/Setting_helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Skr/Skr_open.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Skr/Skr_open.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/Skr/skr_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Skr/skr_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_new.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Usb/usb_chengUser.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_chengUser.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/Usb/usb_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Usb/usb_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_new.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/User/helper_config" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/helper_config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/User/helper_db" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/helper_db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/user_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/user_new.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/main_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/main_load.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/setting_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/setting_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/config_helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_db" beforeDir="false" afterPath="$PROJECT_DIR$/helper_db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.spec" beforeDir="false" afterPath="$PROJECT_DIR$/main.spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stylesheet.py" beforeDir="false" afterPath="$PROJECT_DIR$/stylesheet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,13 +136,15 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.szi_new.executor&quot;: &quot;Run&quot;,
     &quot;Python.test.executor&quot;: &quot;Run&quot;,
     &quot;Python.user_main.executor&quot;: &quot;Run&quot;,
     &quot;Python.user_new.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/val/PycharmProjects/Helper/View/Skr&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.project&quot;
+    &quot;last_opened_file_path&quot;: &quot;/home/valyak/PycharmProjects/Helper&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -61,6 +156,8 @@
       <recent name="$PROJECT_DIR$/ViewModel/Setting_helper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ViewModel/Szi" />
+      <recent name="$PROJECT_DIR$/Model" />
       <recent name="$PROJECT_DIR$/Icons/User" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -80,6 +177,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="szi_new" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Helper" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ViewModel/Szi" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ViewModel/Szi/szi_new.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -157,6 +276,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.szi_new" />
         <item itemvalue="Python.user_new" />
         <item itemvalue="Python.user_main" />
       </list>
@@ -165,7 +285,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
+        <option value="bundled-python-sdk-1b1018131e27-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.180" />
       </set>
     </attachedChunks>
   </component>
@@ -234,7 +354,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732695058584</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Szi">
+      <option name="closed" value="true" />
+      <created>1733298643218</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733298643219</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Szi">
+      <option name="closed" value="true" />
+      <created>1733298661763</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733298661763</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -255,6 +391,8 @@
     <MESSAGE value="base OK" />
     <MESSAGE value="user" />
     <MESSAGE value="skr" />
-    <option name="LAST_COMMIT_MESSAGE" value="skr" />
+    <MESSAGE value="Szi" />
+    <MESSAGE value="Szi-ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="Szi-ok" />
   </component>
 </project>

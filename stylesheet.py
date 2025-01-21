@@ -17,7 +17,9 @@ style = '''
      QPushButton{ 
         text-align: left;
         border: 0px solid #3873d9;
-    }
+    }   
+
      '''
 
 blue_color_tw_text=QColor("#0e5d96")
+red_color_tw_text=QColor('#ff0000')

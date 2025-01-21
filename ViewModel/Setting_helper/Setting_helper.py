@@ -54,7 +54,7 @@ class Setting_helper(QtWidgets.QDialog):
 
         self.ui.table_branch.setEditTriggers(QAbstractItemView.NoEditTriggers)  # запред редактирования
         self.ui.table_branch.setColumnHidden(0, True)  # Скрываем столбец id
-        self.ui.table_branch.verticalHeader().setVisible(False)  # Убераем первую колонку
+        self.ui.table_branch.verticalHeader().setVisible(False)  # Убираем первую колонку
         self.ui.table_branch.setHorizontalHeaderItem(1, QTableWidgetItem('Список филиалов'))
         header = self.ui.table_branch.horizontalHeader()
         header.setSectionResizeMode(1, QHeaderView.Stretch)

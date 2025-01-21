@@ -81,4 +81,26 @@ if os.path.exists(path_config_file_name) == False:
         'defolt_department':''
         }
 
+    config['Szi'] = {
+        'checkBox_all_Branch': 'False',
+        'checkBox_all_Department': 'False',
+        'checkBox_all_Szi':'False',
+        'checkBox_all_User': 'False',
+        'checkBox_all_Equipment': 'False',
+
+        'checked_item_Branch': '',
+        'checked_item_Department': '',
+        'checked_item_Szi':'',
+        'checked_item_User': '',
+        'checked_item_Equipment': '',
+
+        'checkB_statusOn': 'True',
+        'checkB_statusOff': 'True',
+
+        'current_indexPage': '',
+
+        'defolt_branch': '',
+        'defolt_department': ''
+    }
+
     config.write()
