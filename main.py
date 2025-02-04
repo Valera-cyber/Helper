@@ -1,50 +1,57 @@
 import os
 import sys
+from PyQt5.QtWidgets import QMessageBox
 
 from ViewModel.Equipment.equipment_main import Equipment_main
 from ViewModel.Skr.skr_main import Skr_main
 from ViewModel.Szi.szi_main import Szi_main
 from ViewModel.Usb.usb_main import Usb_main
-from ViewModel.User.user_main import User_main
+from ViewModel.User.user_main import UserMain
+
 from config_helper import config
 from PyQt5 import QtWidgets
 
 import create_database
 from Model.database import DATABASE_NAME
 from View.Start_menu.Start_menu import Ui_MainWindow
-from ViewModel.Setting_helper.Setting_helper import Setting_helper
+from ViewModel.Setting_helper.Setting_helper import SettingHelper
 
 
-class Start_menu(QtWidgets.QMainWindow):
+class StartMenu(QtWidgets.QMainWindow):
     def __init__(self):
-        super(Start_menu, self).__init__()
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+        try:
+            super(StartMenu, self).__init__()
+            self.ui = Ui_MainWindow()
+            self.ui.setupUi(self)
 
-        self.ui.btn_user.clicked.connect(self.clicked_btn_user)
-        self.ui.btn_usb.clicked.connect(self.clicked_btn_usb)
-        self.ui.btn_setting.clicked.connect(self.clicked_btn_setting)
-        self.ui.btn_equipment.clicked.connect(self.clicked_btn_equipment)
-        self.ui.btn_skr.clicked.connect(self.clicked_btn_skr)
-        self.ui.btn_szi.clicked.connect(self.clicked_btn_szi)
+            self.ui.btn_user.clicked.connect(self.clicked_btn_user)
+            self.ui.btn_usb.clicked.connect(self.clicked_btn_usb)
+            self.ui.btn_setting.clicked.connect(self.clicked_btn_setting)
+            self.ui.btn_equipment.clicked.connect(self.clicked_btn_equipment)
+            self.ui.btn_skr.clicked.connect(self.clicked_btn_skr)
+            self.ui.btn_szi.clicked.connect(self.clicked_btn_szi)
 
-        self.path_helper = (os.path.abspath(os.getcwd()))
+            self.path_helper = (os.path.abspath(os.getcwd()))
 
-        self.read_config()
+            self.read_config()
 
-        self.export_folders()
+            self.export_folders()
+        except Exception as e:
+            QMessageBox.warning(self, 'Внимание', str(e), QMessageBox.Ok)
 
         # self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint)
+
     def clicked_btn_szi(self):
-        self.szi=Szi_main(self.path_helper)
+
+        self.szi = Szi_main(self.path_helper)
         self.szi.show()
 
     def clicked_btn_skr(self):
-        self.skr=Skr_main(self.path_helper)
+        self.skr = Skr_main(self.path_helper)
         self.skr.show()
 
     def clicked_btn_user(self):
-        self.user = User_main(self.path_helper)
+        self.user = UserMain(self.path_helper)
         self.user.show()
 
     def clicked_btn_usb(self):
@@ -55,8 +62,6 @@ class Start_menu(QtWidgets.QMainWindow):
         self.equipment = Equipment_main(self.path_helper)
         self.equipment.show()
 
-
-
     def read_config(self):
         path_db = config['Setting_helper']['path_db']
         if path_db == '':
@@ -66,17 +71,16 @@ class Start_menu(QtWidgets.QMainWindow):
                 config['Setting_helper']['path_db'] = self.path_helper + '/' + DATABASE_NAME
                 config.write()
             else:
-                print('Выберите базу данных, или удалите "helper_db" в корневом каталоге, для создания новой базы ')
                 self.desable_button()
         else:
             self.enabled_button()
 
     def export_folders(self):
         path_export = config['Helper_export']['path_export']
-        if path_export=='':
-            if not os.path.isdir(self.path_helper+'/'+'Helper_export'):
-                os.mkdir(self.path_helper+'/'+'Helper_export')
-                config['Helper_export']['path_export']=self.path_helper+'/'+'Helper_export'
+        if path_export == '':
+            if not os.path.isdir(self.path_helper + '/' + 'Helper_export'):
+                os.mkdir(self.path_helper + '/' + 'Helper_export')
+                config['Helper_export']['path_export'] = self.path_helper + '/' + 'Helper_export'
                 config.write()
 
     def enabled_button(self):
@@ -94,14 +98,12 @@ class Start_menu(QtWidgets.QMainWindow):
         self.ui.btn_szi.setEnabled(False)
 
     def clicked_btn_setting(self):
-        setting_helper = Setting_helper(self)
+        setting_helper = SettingHelper(self)
         setting_helper.exec_()
         self.read_config()
 
 
-
-
 app = QtWidgets.QApplication([])
-main = Start_menu()
+main = StartMenu()
 main.show()
 sys.exit(app.exec_())

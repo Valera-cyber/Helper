@@ -16,10 +16,12 @@ from PyQt5.uic.properties import QtGui
 
 from Model.database import session
 from Model.model import Office_equipment, Branch, Department, Office_type_equipment, SziAccounting, SziType, \
-    SziFileInst, SziFileUninst, SziEquipment
+    SziFileInst, SziFileUninst, SziEquipment, ServiceDepartment
 from View.main_container.container import Ui_MainWindow
 from ViewModel.Docx_replace import replace_text
+from ViewModel.Equipment.change_equipment import Change_equipment
 from ViewModel.Equipment.equipment_new import Equipment_new
+from ViewModel.Equipment.equipment_sortView import Equipment_sortView
 from ViewModel.Helper_all import Helper_all
 from ViewModel.main_load import Main_load
 from ViewModel.setting_view import Setting_view
@@ -94,7 +96,7 @@ class Equipment_main(QtWidgets.QMainWindow):
         if item.column() == 4 or item.column() == 5:
 
             id_sziFileInst = self.tW_szi.item(self.tW_szi.currentRow(), 1).text()
-            id_sziFileUnInst=self.tW_szi.item(self.tW_szi.currentRow(),6).text()
+            id_sziFileUnInst = self.tW_szi.item(self.tW_szi.currentRow(), 6).text()
 
             if item.column() == 4 and id_sziFileInst != '':
                 fileInstSzi = self.s.query(SziFileInst.file_data).filter(SziFileInst.id == id_sziFileInst).one()
@@ -378,8 +380,8 @@ class Equipment_main(QtWidgets.QMainWindow):
         self.equipment_new.exec_()
 
     def clicked_btn_sort(self):
-        self.settingViewUser = Setting_view('equipment')
-        self.settingViewUser.exec_()
+        sortView = Equipment_sortView()
+        sortView.exec_()
 
         Main_load.print_list(self.ui, self.load_equipment())
         Main_load.select_row_intable(self.ui)
@@ -530,6 +532,22 @@ class Equipment_main(QtWidgets.QMainWindow):
             self.btn_print.setEnabled(False)
             self.btn_download.setEnabled(False)
 
+    def change_equipment(self):
+        change_equipment = Change_equipment(Main_load.get_id(self.ui),
+                                            self.tW_szi.item(self.tW_szi.currentRow(), 3).text())
+        change_equipment.exec_()
+
+        self.print_tW_Szi(Main_load.get_id(self.ui))
+
+    def contextMenuRequested_tW_szi(self, pos):
+        if self.tW_szi.currentColumn() == 2:
+            menu = QtWidgets.QMenu()
+            btn_change_equipment = menu.addAction("Перенести СЗИ")
+
+            btn_change_equipment.triggered.connect(self.change_equipment)
+
+            menu.exec_(self.tW_szi.viewport().mapToGlobal(pos))
+
     def create_tW_szi(self):
         '''Создаем табицу инфо tW_info'''
         self.tW_szi = QtWidgets.QTableWidget()
@@ -540,6 +558,9 @@ class Equipment_main(QtWidgets.QMainWindow):
         self.tW_szi.setAcceptDrops(True)
         self.tW_szi.itemSelectionChanged.connect(self.changed_current_cell_tW_szi)
         self.tW_szi.itemDoubleClicked.connect(self.mouseDoubleClickEvent_tW_act)
+
+        self.tW_szi.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.tW_szi.customContextMenuRequested.connect(self.contextMenuRequested_tW_szi)
 
         numrows = 0
         numcols = 7
@@ -629,7 +650,7 @@ class Equipment_main(QtWidgets.QMainWindow):
         self.tW_info.setWordWrap(True)
         self.tW_info.setCornerButtonEnabled(True)
 
-        numrows = 10
+        numrows = 11
         numcols = 2
 
         self.tW_info.setColumnCount(numcols)
@@ -643,15 +664,16 @@ class Equipment_main(QtWidgets.QMainWindow):
         self.tW_info.verticalHeader().setVisible(False)
 
         self.tW_info.setItem(0, 0, QTableWidgetItem('Филиал:'))
-        self.tW_info.setItem(1, 0, QTableWidgetItem('Служба:'))
-        self.tW_info.setItem(2, 0, QTableWidgetItem('Тип устройства:'))
-        self.tW_info.setItem(3, 0, QTableWidgetItem('Наименование:'))
-        self.tW_info.setItem(4, 0, QTableWidgetItem('Инвентарный номер:'))
-        self.tW_info.setItem(5, 0, QTableWidgetItem('Начало эксплуатации:'))
-        self.tW_info.setItem(6, 0, QTableWidgetItem('Модель:'))
-        self.tW_info.setItem(7, 0, QTableWidgetItem('Производитель:'))
-        self.tW_info.setItem(8, 0, QTableWidgetItem('Серийный номер:'))
-        self.tW_info.setItem(9, 0, QTableWidgetItem('Расположение:'))
+        self.tW_info.setItem(1, 0, QTableWidgetItem('Обслуживающия служба:'))
+        self.tW_info.setItem(2, 0, QTableWidgetItem('Эксплуатирующия служба:'))
+        self.tW_info.setItem(3, 0, QTableWidgetItem('Тип устройства:'))
+        self.tW_info.setItem(4, 0, QTableWidgetItem('Наименование:'))
+        self.tW_info.setItem(5, 0, QTableWidgetItem('Инвентарный номер:'))
+        self.tW_info.setItem(6, 0, QTableWidgetItem('Начало эксплуатации:'))
+        self.tW_info.setItem(7, 0, QTableWidgetItem('Модель:'))
+        self.tW_info.setItem(8, 0, QTableWidgetItem('Производитель:'))
+        self.tW_info.setItem(9, 0, QTableWidgetItem('Серийный номер:'))
+        self.tW_info.setItem(10, 0, QTableWidgetItem('Расположение:'))
 
         height_tW = Main_load.get_height_qtable(numrows)
         self.tW_info.setMaximumHeight(height_tW - 22)
@@ -670,33 +692,37 @@ class Equipment_main(QtWidgets.QMainWindow):
 
     def print_fill_equipment(self, equipment_id):
         '''Запрос в SQL и заполняем tW_info'''
-        equipment = self.s.query(Office_equipment, Department.name, Office_type_equipment.name, Branch.name). \
+        equipment = self.s.query(Office_equipment, Department.name, Office_type_equipment.name, Branch.name, ServiceDepartment.name). \
             select_from(Office_equipment). \
             join(Department). \
             join(Office_type_equipment). \
             join(Branch). \
+            join(ServiceDepartment).\
             filter(Office_equipment.id == equipment_id).one()
 
         self.tW_info.setItem(0, 1, QTableWidgetItem(equipment[3]))
-        self.tW_info.setItem(2, 1, QTableWidgetItem(equipment[2]))
-        self.tW_info.setItem(3, 1, QTableWidgetItem(equipment[0].name_equipment))
-        self.tW_info.setItem(4, 1, QTableWidgetItem(equipment[0].inv_number))
-        self.tW_info.setItem(5, 1, QTableWidgetItem(str((equipment[0].start_date).strftime('%d.%m.%Y'))))
-        self.tW_info.setItem(1, 1, QTableWidgetItem(equipment[1]))
-        self.tW_info.setItem(6, 1, QTableWidgetItem(equipment[0].model_equipment))
-        self.tW_info.setItem(7, 1, QTableWidgetItem(equipment[0].manufacturer))
-        self.tW_info.setItem(8, 1, QTableWidgetItem(equipment[0].sn_equipment))
-        self.tW_info.setItem(9, 1, QTableWidgetItem(equipment[0].location))
+        self.tW_info.setItem(3, 1, QTableWidgetItem(equipment[2]))
+        self.tW_info.setItem(4, 1, QTableWidgetItem(equipment[0].name_equipment))
+        self.tW_info.setItem(5, 1, QTableWidgetItem(equipment[0].inv_number))
+        self.tW_info.setItem(6, 1, QTableWidgetItem(str((equipment[0].start_date).strftime('%d.%m.%Y'))))
+        self.tW_info.setItem(2, 1, QTableWidgetItem(equipment[1]))
+        self.tW_info.setItem(7, 1, QTableWidgetItem(equipment[0].model_equipment))
+        self.tW_info.setItem(8, 1, QTableWidgetItem(equipment[0].manufacturer))
+        self.tW_info.setItem(9, 1, QTableWidgetItem(equipment[0].sn_equipment))
+        self.tW_info.setItem(10, 1, QTableWidgetItem(equipment[0].location))
+        self.tW_info.setItem(1, 1, QTableWidgetItem(equipment[4]))
 
     def print_tE_notes(self, equipment_id):
         notes = self.s.query(Office_equipment.notes).filter(Office_equipment.id == equipment_id).one()
         self.tE_notes.setText(notes[0])
 
     def load_equipment(self):
-        checked_branch = config['Equipment']['checked_branch']
-        checked_branch=list(checked_branch)
-        checked_department = config['Equipment']['checked_department']
+        checked_branch = config['Equipment']['checked_item_Branch']
+        checked_branch = list(checked_branch)
+        checked_department = config['Equipment']['checked_item_Department']
         checked_department = list(checked_department)
+        serviceDepartment = config['Equipment']['checked_item_ServiceDepartment']
+        serviceDepartment = list(serviceDepartment)
 
         serch_text = '%' + self.ui.lineEdit_searchUser.text() + '%'
         if serch_text == '':
@@ -709,6 +735,7 @@ class Equipment_main(QtWidgets.QMainWindow):
         equipments = self.s.query(Office_equipment.id, Office_equipment.name_equipment). \
             filter(Office_equipment.branch_id.in_((checked_branch))). \
             filter(Office_equipment.department_id.in_((checked_department))). \
+            filter(Office_equipment.serviceDepartment_id.in_((serviceDepartment))). \
             filter(Office_equipment.is_work.like(status_equipment)). \
             filter(or_(
             Office_equipment.name_equipment.like(serch_text),

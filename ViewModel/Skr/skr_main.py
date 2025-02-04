@@ -1,34 +1,23 @@
-import ast
-import os
-import pathlib
 import subprocess
 import sys
-from functools import partial
-
 import openpyxl
 from sqlalchemy import or_
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtCore import Qt, QEvent
-from PyQt5.QtGui import QIcon, QBrush, QColor, QFont
-from datetime import datetime
-from PyQt5.QtWidgets import QPushButton, QApplication, QToolButton, QAction, QHeaderView, QTableWidgetItem, \
-    QAbstractItemView, QAbstractScrollArea, QMessageBox
-from PyQt5.uic.properties import QtGui
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QIcon, QBrush
+from PyQt5.QtWidgets import  QApplication, QHeaderView, QTableWidgetItem, \
+    QAbstractItemView, QMessageBox
 from sqlalchemy.sql.functions import coalesce
-
 from Model.database import session
-from Model.model import Office_equipment, Branch, Department, Office_type_equipment, SziAccounting, SziType, \
-    SziFileInst, SziFileUninst, SziEquipment, Skr, User
+from Model.model import Office_equipment, Branch, Department, Office_type_equipment,  Skr, User, ServiceDepartment
 from View.main_container.container import Ui_MainWindow
-from ViewModel.Docx_replace import replace_text
-from ViewModel.Equipment.equipment_new import Equipment_new
 from ViewModel.Helper_all import Helper_all
 from ViewModel.Skr.Skr_open import Skr_open
 from ViewModel.Skr.skr_new import Skr_new
+from ViewModel.Skr.skr_sortView import Skr_sortView
 from ViewModel.main_load import Main_load
-from ViewModel.setting_view import Setting_view
 from config_helper import config
-from stylesheet import style, blue_color_tw_text
+from stylesheet import style
 
 
 class Skr_main(QtWidgets.QMainWindow):
@@ -43,7 +32,6 @@ class Skr_main(QtWidgets.QMainWindow):
 
         self.ui.btn_edit.setText('Вскрыть')
 
-        # self.ui.lineEdit_searchUser.textChanged.connect(partial(self.searchEquipment))
 
         width = QtWidgets.qApp.desktop().availableGeometry(self).width()  # Устанавливаем размер долей рабочих панелей
         self.ui.splitter.setSizes([width * 1 / 3, width * 2 / 3])
@@ -86,19 +74,23 @@ class Skr_main(QtWidgets.QMainWindow):
         if serch_text == '':
             serch_text = '%'
 
-        checked_branch = config['Skr']['checked_branch']
+        checked_branch = config['Skr']['checked_item_Branch']
         checked_branch = list(checked_branch)
-        checked_department = config['Skr']['checked_department']
+        checked_department = config['Skr']['checked_item_Department']
         checked_department = list(checked_department)
+        checked_item_ServiceDepartment = config['Skr']['checked_item_ServiceDepartment']
+        checked_item_ServiceDepartment = list(checked_item_ServiceDepartment)
 
         skr = self.s.query(Skr.id, Office_equipment.name_equipment). \
             select_from(Skr). \
             join(Office_equipment). \
             join(Branch). \
             join(Department). \
+            join(ServiceDepartment). \
             join(Office_type_equipment). \
             filter(Office_equipment.branch_id.in_((checked_branch))). \
             filter(Office_equipment.department_id.in_((checked_department))). \
+            filter(Office_equipment.serviceDepartment_id.in_((checked_item_ServiceDepartment))).\
             filter(or_(coalesce(Skr.note, 1).like(status_equipment))). \
             filter(or_(
             Office_equipment.name_equipment.like(serch_text),
@@ -248,8 +240,8 @@ class Skr_main(QtWidgets.QMainWindow):
             Main_load.select_row_intable(self.ui)
 
     def clicked_btn_sort(self):
-        self.settingViewSkr = Setting_view('skr')
-        self.settingViewSkr.exec_()
+        sortView = Skr_sortView()
+        sortView.exec_()
 
         Main_load.print_list(self.ui, self.load_skr())
         Main_load.select_row_intable(self.ui)

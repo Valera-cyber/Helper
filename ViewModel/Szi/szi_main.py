@@ -1,20 +1,20 @@
 import os
 import pathlib
+import re
 import subprocess
 import sys
 from datetime import datetime
-
+import openpyxl
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
-
 from PyQt5.QtGui import QIcon, QBrush
 from PyQt5.QtWidgets import QApplication, QHeaderView, QTableWidgetItem, \
     QAbstractItemView, QMessageBox
-
 from Model.database import session
 from Model.model import Office_equipment, Branch, Department, SziAccounting, SziType, \
     SziFileInst, SziFileUninst, SziEquipment, User
 from View.main_container.container import Ui_MainWindow
+from ViewModel.Docx_replace import replace_text
 from ViewModel.Helper_all import Helper_all
 from ViewModel.Szi.szi_new import Szi_new
 from ViewModel.main_load import Main_load
@@ -40,6 +40,7 @@ class Szi_main(QtWidgets.QMainWindow):
         self.setWindowIcon(QIcon(self.path_helper + '/Icons/szi.png'))
 
         Main_load.create_tW_list(self.ui)
+        self.ui.tW_list.setColumnHidden(0,False)
         self.ui.tW_list.itemSelectionChanged.connect(self.changed_current_cell_user)
         Main_load.print_list(self.ui, self.load_szi())
 
@@ -122,7 +123,6 @@ class Szi_main(QtWidgets.QMainWindow):
             self.s.commit()
 
             return id_SziFileUninst
-
 
         id_SziAccounting = Main_load.get_id(self.ui)
         get_list_equipment_id(id_SziAccounting)
@@ -212,6 +212,7 @@ class Szi_main(QtWidgets.QMainWindow):
         menu = QtWidgets.QMenu()
         btn_read = menu.addAction("Открыть")
         btn_download = menu.addAction("Загрузить")
+        btn_prin = menu.addAction("Распечатать")
 
         item = self.tW_act.item(self.tW_act.currentRow(), self.tW_act.currentColumn())
 
@@ -223,10 +224,108 @@ class Szi_main(QtWidgets.QMainWindow):
         if self.tW_act.item(self.tW_act.currentRow(), self.tW_act.currentColumn()).text() == '':
             btn_read.setEnabled(False)
             btn_download.setEnabled(False)
+            btn_prin.setEnabled(False)
 
         btn_download.triggered.connect(self.download_act)
         btn_read.triggered.connect(self.read_act)
+        btn_prin.triggered.connect(self.print_act)
         menu.exec_(self.tW_act.viewport().mapToGlobal(pos))
+
+    def print_act(self):
+
+        def print_instal():
+            id_SziAccounting = Main_load.get_id(self.ui)
+
+            list_id = list()
+            for i in self.s.query(SziEquipment.equipment_id).filter(SziEquipment.sziAccounting_id == id_SziAccounting):
+                list_id.append(i[0])
+
+            locationEquipmentSkr = Helper_all.info_equipment_act_szi(list_id, id_SziAccounting)
+
+            act = self.tW_info.item(7, 1).text().split()
+            number_act = act[2]
+            date_act = act[4]
+
+            def get_user_fio(user_fio):
+                user_fio = re.sub(r'\b(\w+)\b\s+\b(\w)\w*\b\s+\b(\w)\w*\b', r'\1 \2.\3.', user_fio)
+                return user_fio
+
+            dictionary = {'DateFull': Helper_all.get_date_full(date_act),
+                          'Date': date_act,
+                          'Number': number_act,
+                          'Equipment': locationEquipmentSkr,
+                          'NameSzi': self.ui.tW_list.item(self.ui.tW_list.currentRow(), 1).text(),
+                          'Id_journalInstSzi': id_SziAccounting,
+                          'Lic_journalInstSzi': self.tW_info.item(3, 1).text(),
+                          'Title': self.tW_info.item(11, 1).text(),
+                          'User': get_user_fio(self.tW_info.item(10, 1).text())}
+
+            name_file = 'Акт установки СЗИ - ' + number_act
+
+            path_export = Main_load.get_helperExport('Szi')
+
+            forma = self.path_helper + '/' + 'Form_print' + '/' + 'Inst_SZI.docx'
+
+            replace_text(forma, dictionary, path_export + '/' + name_file)
+
+        def print_unistal():
+            def get_list_equipment_id_fileUnistal(id_SziFileUninst):
+                '''Получаем список оборудования для деинсталяции с файлом для деинсталяции'''
+                list_equipmentId = []  # список оборудования для составления акта(СКР, расположение)
+                for i in self.s.query(SziEquipment.equipment_id). \
+                        filter(SziEquipment.sziAccounting_id == id_SziAccounting). \
+                        filter(SziEquipment.status == False). \
+                        filter(SziEquipment.fileUninstSzi_id == id_SziFileUninst):
+                    list_equipmentId.append(i[0])
+
+                return list_equipmentId
+
+            id_SziAccounting = Main_load.get_id(self.ui)
+            sziAccounting = self.s.query(SziAccounting).filter(SziAccounting.id == id_SziAccounting).one()
+            id_fileUninstSzi = sziAccounting.fileUninstSzi_id
+
+            list_equipmentId = get_list_equipment_id_fileUnistal(id_fileUninstSzi)
+
+            s = session()
+
+            info_equipment = Helper_all.info_equipment_act_szi(list_equipmentId, id_SziAccounting)
+
+            sziFileUninst = s.query(SziFileUninst).filter(SziFileUninst.id == id_fileUninstSzi).one()
+            date_unist = sziFileUninst.date.strftime('%d.%m.%Y')
+            date_unist_full = Helper_all.get_date_full(date_unist)
+
+            sziAccounting = s.query(SziAccounting, SziType). \
+                join(SziType). \
+                filter(SziAccounting.id == id_SziAccounting).one()
+            nameSzi = sziAccounting[1].name
+            sn = sziAccounting[0].sn
+
+            dictionary = {'DateFull': date_unist_full,
+                          'Date': date_unist,
+                          'Number': str(id_fileUninstSzi),
+                          'Equipment': info_equipment,
+                          'id_SziAccounting': id_SziAccounting,
+                          'NameSzi': nameSzi,
+                          'SN': sn}
+
+            name_file = 'Акт вывода СЗИ - ' + str(id_fileUninstSzi)
+
+            path_export = Main_load.get_helperExport('Szi')
+
+            forma = self.path_helper + '/' + 'Form_print' + '/' + 'Uninst_SZI.docx'
+
+            replace_text(forma, dictionary, path_export + '/' + name_file)
+
+        if self.tW_act.currentColumn() == 1:
+            try:
+                print_instal()
+            except Exception as e:
+                QMessageBox.warning(self,'Внимание',str(e),QMessageBox.Ok)
+        elif self.tW_act.currentColumn() == 2:
+            try:
+                print_unistal()
+            except Exception as e:
+                QMessageBox.warning(self,'Внимание',str(e),QMessageBox.Ok)
 
     def read_act(self):
 
@@ -309,10 +408,10 @@ class Szi_main(QtWidgets.QMainWindow):
         item = self.tW_act.item(self.tW_act.currentRow(), self.tW_act.currentColumn())
         path_file = check_download_file(item)
 
-        if path_file==False:
+        if path_file == False:
             return
 
-        id_SziAccounting=self.tW_act.item(self.tW_act.currentRow(), 0).text()
+        id_SziAccounting = self.tW_act.item(self.tW_act.currentRow(), 0).text()
 
         if self.tW_act.currentColumn() == 1:
             '''Делаем загрузку акта инсталяции'''
@@ -461,11 +560,22 @@ class Szi_main(QtWidgets.QMainWindow):
         checkBox_status_of = convert_str_bool(config['Szi']['checkB_statusOff'])
 
         checked_Equipment = config['Szi']['checked_item_Equipment']
-        # checked_typeEquipment = config['Szi']['checked_typeEquipment']
+        checked_Equipment = list(checked_Equipment)
+
         checked_brabch = config['Szi']['checked_item_Branch']
+        checked_brabch = list(checked_brabch)
+
         checked_department = config['Szi']['checked_item_Department']
+        checked_department = list(checked_department)
+
         checked_szi_type = config['Szi']['checked_item_Szi']
+        checked_szi_type = list(checked_szi_type)
+
         checked_employeeId = config['Szi']['checked_item_User']
+        checked_employeeId = list(checked_employeeId)
+
+        checked_item_ServiceDepartment = config['Szi']['checked_item_ServiceDepartment']
+        checked_item_ServiceDepartment = list(checked_item_ServiceDepartment)
 
         if checkBox_status_on == False and checkBox_status_of == False:
             status = '% % %'
@@ -492,6 +602,7 @@ class Szi_main(QtWidgets.QMainWindow):
             filter(Branch.id.in_((checked_brabch))). \
             filter(Department.id.in_((checked_department))). \
             filter(User.employeeId.in_((checked_employeeId))). \
+            filter(Office_equipment.serviceDepartment_id.in_((checked_item_ServiceDepartment))).\
             order_by(SziAccounting.id). \
             group_by(SziAccounting.id)
         return szi
@@ -572,8 +683,114 @@ class Szi_main(QtWidgets.QMainWindow):
         Main_load.print_list(self.ui, self.load_szi())
         Main_load.select_row_intable(self.ui)
 
+    def get_Eqipment_currentSzi(self, id_SziAccounting) -> str:
+        '''Возвращаем имена объектов выбранной СЗИ'''
+
+        eqipments = list()
+        sziEquipment = self.s.query(Office_equipment.name_equipment). \
+            select_from(SziEquipment).join(Office_equipment). \
+            filter(SziEquipment.sziAccounting_id == id_SziAccounting). \
+            filter(SziEquipment.status == True)
+
+        for i in sziEquipment:
+            eqipments.append(i[0])
+
+        return ', '.join(eqipments)
+
     def clicked_btn_export(self):
-        print('clicked_btn_export')
+        '''Экспорт в эксель'''
+
+        def get_number_act_inst(id_SziFileInst):
+            sziFileInst = self.s.query(SziFileInst.id, SziFileInst.date).filter(SziFileInst.id == id_SziFileInst)
+            number_act = str(sziFileInst[0][0])
+            date_act = str(sziFileInst[0][1].strftime('%d.%m.%Y'))
+
+            return 'Акт № ' + number_act + ' от ' + date_act
+
+        def get_number_act_uninst(id_SziFileUninst):
+            sziFileUninst = self.s.query(SziFileUninst.id, SziFileUninst.date).filter(
+                SziFileUninst.id == id_SziFileUninst)
+            number_act = str(sziFileUninst[0][0])
+            date_act = str(sziFileUninst[0][1].strftime('%d.%m.%Y'))
+
+            return ('Акт № ' + number_act + ' от ' + date_act)
+
+        def get_fio(id_SziFileInst):
+            sziFileInst = self.s.query(User.fio, User.post). \
+                select_from(SziFileInst). \
+                join(User). \
+                filter(SziFileInst.id == id_SziFileInst).one()
+
+            return sziFileInst
+
+        rezult = QMessageBox.question(self, 'Предупреждение', "Вы действительно хотите выгрузить журнал учета СЗИ?",
+                                      QMessageBox.Ok | QMessageBox.Cancel)
+        if rezult == QMessageBox.Cancel:
+            return
+
+        count_row = self.ui.tW_list.rowCount()
+        list_Id = []
+        for i in range(count_row):
+            list_Id.append(self.ui.tW_list.item(i, 0).text())
+        list_export = []
+        for i in list_Id:
+            row = []
+            sziAccounting = self.s.query(SziAccounting.id, SziType.name, SziAccounting.sn, SziAccounting.inv,
+                                         SziAccounting.lic, SziType.type, SziType.completeness, SziType.sert,
+                                         SziAccounting.rec, SziType.completeness, SziAccounting.fileInstSzi_id,
+                                         SziAccounting.fileUninstSzi_id). \
+                select_from(SziAccounting). \
+                join(SziType, isouter=True). \
+                filter(SziAccounting.id == i).one()
+
+            equipments = self.get_Eqipment_currentSzi(i)
+
+            date_inst = (get_number_act_inst(sziAccounting[10]))
+
+            fio = ', '.join(get_fio(sziAccounting[10]))
+
+            if sziAccounting[11] is not None:
+                date_uninst = (get_number_act_uninst(sziAccounting[11]))
+            else:
+                date_uninst = ''
+
+            row.append(sziAccounting[0])
+            row.append(sziAccounting[1])
+            row.append(sziAccounting[2])
+            row.append(sziAccounting[3])
+            row.append(sziAccounting[4])
+            row.append(sziAccounting[5])
+            row.append(sziAccounting[6])
+            row.append(sziAccounting[7])
+            row.append(sziAccounting[8])
+            row.append(date_inst)
+            row.append(sziAccounting[9])
+            row.append(equipments)
+            row.append(fio)
+            row.append(date_uninst)
+            list_export.append(row)
+
+        wb = openpyxl.Workbook()
+        sheet = wb.sheetnames
+        lis = wb.active
+        # Создание строки с заголовками
+        lis.append(('№ п/п', 'Наименование СЗИ', 'Серийный номер СЗИ', 'Инвентарный номер СЗИ', 'Сведения о лецензии',
+                    'Тип СЗИ', 'Комплектность СЗИ',
+                    'Сведения о сертификате соответствия требованиям ИБ и знаке соответствия',
+                    'Реквизиты документов', 'Номер и дата акта установки (подключения) СЗИ и ввода его в эксплуатацию',
+                    'В составе комплекса / По проекту', 'Место установки (подключения) СЗИ',
+                    'Ф.И.О, должность осуществляющего эксплуатацию СЗИ',
+                    'Номер и дата акта вывода из эксплуатации и демонтажа (деинсталляции)', 'Примечание'))
+        for equipment in list_export:
+            lis.append(list(equipment))
+        # wb.save(filename='Жрнал учета СЗИ.xlsx')
+        # os.startfile('Жрнал учета СЗИ.xlsx')
+
+        path_exportEquipment = Main_load.get_helperExport('Szi')
+
+        wb.save(filename=path_exportEquipment + '/Журнал учета СЗИ.xlsx')
+        opener = "open" if sys.platform == "darwin" else "xdg-open"
+        subprocess.call([opener, path_exportEquipment + '/Журнал учета СЗИ.xlsx'])
 
 
 if __name__ == "__main__":

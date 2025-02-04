@@ -5,6 +5,8 @@ from PyQt5.QtWidgets import QAbstractItemView, QTableWidgetItem, QHeaderView, QA
     QLabel, QDateEdit
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore
+from virtualenv.config.convert import NoneType
+
 from Model.database import session
 from Model.model import Branch, Department, User, Usb_type, Usb, Office_type_equipment, Office_equipment, SziType, \
     SziFileInst, SziAccounting, SziEquipment
@@ -71,24 +73,32 @@ class Szi_new(QtWidgets.QDialog):
 
         def new_SziAccounting():
             '''Сохроняем в SziAccounting новое СЗИ'''
-            # fileInstSzi_id = int(self.ui.lE_aktIns.text())
 
-            # self.ui.tw_item.setItem(0, 0, QTableWidgetItem('СЗИ:'))
-            # self.ui.tw_item.setItem(1, 0, QTableWidgetItem('Серийный номер:'))
-            # self.ui.tw_item.setItem(2, 0, QTableWidgetItem('Инв. Номер:'))
-            # self.ui.tw_item.setItem(3, 0, QTableWidgetItem('Лицензия:'))
-            # self.ui.tw_item.setItem(4, 0, QTableWidgetItem('Реквизиты док.'))
-            # self.ui.tw_item.setItem(5, 0, QTableWidgetItem('Дата установки:'))
-            # self.ui.tw_item.setItem(6, 0, QTableWidgetItem('ФИО отв-го.:'))
-            #
-            # name_equipment = self.ui.tw_item.item(3, 1).text(),
-            # inv_number = self.ui.tw_item.item(4, 1).text(),
+            if self.ui.tw_item.item(1, 1) is not None:
+                sn = self.ui.tw_item.item(1, 1).text()
+            else:
+                sn='None'
+
+            if self.ui.tw_item.item(2, 1) is not None:
+                inv = self.ui.tw_item.item(2, 1).text()
+            else:
+                inv='None'
+
+            if self.ui.tw_item.item(3, 1) is not None:
+                lic = self.ui.tw_item.item(3, 1).text()
+            else:
+                lic='None'
+
+            if self.ui.tw_item.item(4, 1) is not None:
+                rec = self.ui.tw_item.item(4, 1).text()
+            else:
+                rec = 'None'
 
             new_sziAccounting = SziAccounting(sziType_id=self.comboBox_szi.currentData(),
-                                              sn=self.ui.tw_item.item(1,1).text(),
-                                              inv=self.ui.tw_item.item(2,1).text(),
-                                              lic=self.ui.tw_item.item(3,1).text(),
-                                              rec=self.ui.tw_item.item(4,1).text(),
+                                              sn=sn,
+                                              inv=inv,
+                                              lic=lic,
+                                              rec=rec,
                                               fileInstSzi_id=int(self.numberAct),
                                               status=True)
             self.s.add(new_sziAccounting)

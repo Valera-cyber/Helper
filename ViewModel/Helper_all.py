@@ -3,11 +3,10 @@ import pathlib
 import sys
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
-from sqlalchemy import func
 import re
 from Model.database import session
 from Model.model import Office_equipment, Skr, SziEquipment
-
+from sqlalchemy import func
 
 class Helper_all():
     def info_equipment_act_szi(list_equipmentId: list,id_SziAccounting:int) -> str:
@@ -17,7 +16,7 @@ class Helper_all():
         s = session()
         info_equipment = ''
         for i in list_equipmentId:
-            temp = s.query(func.max(Office_equipment.id), Office_equipment.name_equipment,
+            temp = s.query(func.max(Skr.id), Office_equipment.name_equipment,
                                 Office_equipment.location, Skr.numberSkr, Skr.startDate, SziEquipment.sziAccounting_id). \
                 select_from(Office_equipment). \
                 join(Skr). \

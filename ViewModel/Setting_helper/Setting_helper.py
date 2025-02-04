@@ -14,9 +14,9 @@ from View.Setting_helper.Setting_helper import Ui_Dialog
 from config_helper import config
 
 
-class Setting_helper(QtWidgets.QDialog):
+class SettingHelper(QtWidgets.QDialog):
     def __init__(self, parament=None):
-        # super(Setting_helper, self).__init__()
+        # super(SettingHelper, self).__init__()
         QDialog.__init__(self)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)

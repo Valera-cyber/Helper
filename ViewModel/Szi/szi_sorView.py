@@ -3,7 +3,7 @@ from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QDialog
 from PyQt5 import QtWidgets
 from Model.database import session
-from Model.model import SziType, Branch, Department, User, Office_equipment
+from Model.model import SziType, Branch, Department, User, Office_equipment, ServiceDepartment
 from View.main_container.set_view import Ui_Form
 from Model.newTab_sortView import NewTab_sortView
 from ViewModel.Helper_all import Helper_all
@@ -27,6 +27,7 @@ class Szi_sortView(QtWidgets.QDialog):
         self.insertTab_department(1)
         self.insertTab_user(3)
         self.insertTab_equipment(4)
+        self.insertTab_serviceDepartment(5)
 
         self.ui.btn_save.clicked.connect(self.clicked_btn_saveSzi)
         self.ui.btn_cancel.clicked.connect(self.clicked_btn_cancel)
@@ -83,6 +84,9 @@ class Szi_sortView(QtWidgets.QDialog):
         config['Szi']['checkBox_all_Equipment'] = self.tab_equipment.checkBox_all.isChecked()
         config['Szi']['checked_item_Equipment'] = self.get_Checked_id_tW(self.tab_equipment.tW_item)
 
+        config['Szi']['checkBox_all_ServiceDepartment'] = self.tab_serviceDepartment.checkBox_all.isChecked()
+        config['Szi']['checked_item_ServiceDepartment'] = self.get_Checked_id_tW(self.tab_serviceDepartment.tW_item)
+
         config['Szi']['checkB_statusOn'] = self.ui.checkB_statusOn.isChecked()
         config['Szi']['checkB_statusOff'] = self.ui.checkB_statusOff.isChecked()
 
@@ -126,3 +130,10 @@ class Szi_sortView(QtWidgets.QDialog):
         helper_module = {'Szi': 'Equipment'}
         self.tab_equipment = NewTab_sortView('Вся оргтехника', self.ui, helper_module, equipments)
         self.ui.tabWidget.insertTab(index_page, self.tab_equipment, 'Оргтехника')
+
+    def insertTab_serviceDepartment(self, index_page):
+        serviceDepartment = self.s.query(ServiceDepartment.id, ServiceDepartment.name).order_by(ServiceDepartment.name).filter(ServiceDepartment.name != '')
+
+        helper_module = {'Szi': 'ServiceDepartment'}
+        self.tab_serviceDepartment = NewTab_sortView('Все зоны', self.ui, helper_module, serviceDepartment)
+        self.ui.tabWidget.insertTab(index_page, self.tab_serviceDepartment, 'Зона обслуживания')

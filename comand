@@ -1,0 +1,10 @@
+
+deactivate
+
+source venv/bin/activate
+
+pip3 install -r requirements.txt
+
+pyinstaller --onefile main.py
+
+pyuic5 View/main_container/new_item.ui -o View/main_container/new_item.py

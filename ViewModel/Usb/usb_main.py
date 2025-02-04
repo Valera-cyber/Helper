@@ -20,6 +20,7 @@ from ViewModel.Docx_replace import replace_text
 from ViewModel.Helper_all import Helper_all
 from ViewModel.Usb.usb_chengUser import Usb_chengUser
 from ViewModel.Usb.usb_new import Usb_new
+from ViewModel.Usb.usb_sortView import Usb_sortView
 from ViewModel.main_load import Main_load
 from ViewModel.setting_view import Setting_view
 from config_helper import config
@@ -278,8 +279,8 @@ class Usb_main(QtWidgets.QMainWindow):
         print('clicked_btn_edit')
 
     def clicked_btn_sort(self):
-        self.settingViewUser = Setting_view('usb')
-        self.settingViewUser.exec_()
+        sortView = Usb_sortView()
+        sortView.exec_()
 
         Main_load.print_list(self.ui, self.load_usb())
         Main_load.select_row_intable(self.ui)
@@ -319,9 +320,9 @@ class Usb_main(QtWidgets.QMainWindow):
             subprocess.call([opener, path_exportUsb + '/USB.xlsx'])
 
     def load_usb(self):
-        checked_branch = config['Usb']['checked_branch']
+        checked_branch = config['Usb']['checked_item_Branch']
         checked_branch=list(checked_branch)
-        checked_department = config['Usb']['checked_department']
+        checked_department = config['Usb']['checked_item_Department']
         checked_department = list(checked_department)
 
         serch_text = '%' + self.ui.lineEdit_searchUser.text() + '%'

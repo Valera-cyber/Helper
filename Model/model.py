@@ -73,6 +73,7 @@ class Office_equipment(Base):
     __tablename__ = 'office_equipments'
 
     id = Column(Integer, primary_key=True)
+    serviceDepartment_id = Column(String, ForeignKey('serviceDepartment.id'))
     branch_id = Column(String, ForeignKey('branches.id'))
     department_id = Column(Integer, ForeignKey('departments.id'))
     type_equipment_id = Column(Integer, ForeignKey('office_type_equipments.id'))
@@ -171,3 +172,9 @@ class SziFileUninst(Base):
     file_data = Column(BLOB)
     date = Column(Date)
     cause = Column(String)
+
+
+class ServiceDepartment(Base):
+    __tablename__ = 'serviceDepartment'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)

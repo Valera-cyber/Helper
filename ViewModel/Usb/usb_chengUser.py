@@ -36,21 +36,26 @@ class Usb_chengUser(QtWidgets.QDialog):
     def clicked_btn_save(self):
         # print(self.user_id)
         new_user_id=(self.comboBox_user.currentData())
-        if self.user_id!=new_user_id:
+        if self.user_id==new_user_id:
+            rezult = QMessageBox.question(self, 'Предупреждение',
+                                          "Данное USB устройство и так у этого пользователя, передать повторно?",
+                                          QMessageBox.Ok | QMessageBox.Cancel)
+            if rezult == QMessageBox.Cancel:
+                return
 
-            usb = self.s.query(Usb).filter(Usb.id==self.usb_id).one()
-            usb.user_id=new_user_id
-            self.s.add(usb)
+        usb = self.s.query(Usb).filter(Usb.id==self.usb_id).one()
+        usb.user_id=new_user_id
+        self.s.add(usb)
+        self.s.commit()
+        self.close()
+
+        if self.comboBox_user.currentData()!=None:
+            usb_data = Usb_data(user_id=new_user_id,
+                                usb_id=self.usb_id)
+            self.s.add(usb_data)
             self.s.commit()
             self.close()
-
-            if self.comboBox_user.currentData()!=None:
-                usb_data = Usb_data(user_id=new_user_id,
-                                    usb_id=self.usb_id)
-                self.s.add(usb_data)
-                self.s.commit()
-                self.close()
-                # print_regForm()
+            # print_regForm()
 
     def create_combo(self):
         self.comboBox_branch = QtWidgets.QComboBox()

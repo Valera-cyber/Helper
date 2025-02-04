@@ -65,6 +65,10 @@ class User_new(QtWidgets.QDialog):
             self.checkBox_status.setChecked(user[0].statusWork)
             self.ui.tw_item.item(2, 1).setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable)  # запрет редактирования
 
+    def closeEvent(self, event):
+        self.employeeId=None
+        self.s.close()
+
     def load_defolt_branch_department(self):
         defolt_branch = config['User']['defolt_branch']
         if defolt_branch=='':

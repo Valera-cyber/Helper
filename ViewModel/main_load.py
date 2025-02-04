@@ -1,28 +1,15 @@
 import os
 import pathlib
-
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAbstractItemView, QTableWidgetItem, QHeaderView, QLabel, QTableWidgetSelectionRange, \
-    QMessageBox
-from PyQt5 import QtWidgets, QtCore
-
+from PyQt5.QtWidgets import QAbstractItemView, QTableWidgetItem, QHeaderView
 from config_helper import config
 
-
 class Main_load():
-
-
     def check_download_file(path_file):
 
         if len(path_file) == 1:
             if pathlib.Path(path_file[0]).suffix == '.pdf':
                 return True
         return False
-
-
-
-
-
 
     def get_helperExport(folder_name):
         '''Возвращает путь к экспортируемой папки, принимает название папки'''
@@ -67,7 +54,10 @@ class Main_load():
         ui.tW_list.setColumnHidden(0, True)
         ui.tW_list.horizontalHeader().hide()
 
+
+
         header = ui.tW_list.horizontalHeader()
+        # header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
         header.setSectionResizeMode(1, QHeaderView.Stretch)
 
     def print_list(ui, sql):
