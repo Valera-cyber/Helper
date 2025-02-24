@@ -1,0 +1,71 @@
+[Setting_helper]
+path_db = ""
+path_helper = /home/valyak/PycharmProjects/Helper/Model
+[Helper_export]
+path_export = /home/valyak/PycharmProjects/Helper/Model/Export_files
+[User]
+checkBox_all_Branch = False
+checkBox_all_Department = False
+checkBox_all_System = False
+checkBox_all_Szi = False
+checked_item_Branch = ""
+checked_item_Department = ""
+checked_item_System = ""
+checked_item_Szi = ""
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = 0
+defolt_branch = ""
+defolt_department = ""
+[Usb]
+checkBox_all_Branch = False
+checkBox_all_Department = False
+checked_item_Branch = ""
+checked_item_Department = ""
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = 0
+defolt_branch = ""
+defolt_department = ""
+[Equipment]
+checkBox_all_Branch = False
+checkBox_all_Department = False
+checkBox_all_ServiceDepartment = False
+checked_item_Branch = ""
+checked_item_Department = ""
+checked_item_ServiceDepartment = ""
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = 0
+defolt_branch = ""
+defolt_department = ""
+[Skr]
+checkBox_all_Branch = False
+checkBox_all_Department = False
+checkBox_all_ServiceDepartment = False
+checked_item_Branch = ""
+checked_item_Department = ""
+checked_item_ServiceDepartment = ""
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = 0
+defolt_branch = ""
+defolt_department = ""
+[Szi]
+checkBox_all_Branch = False
+checkBox_all_Department = False
+checkBox_all_Szi = False
+checkBox_all_User = False
+checkBox_all_Equipment = False
+checkBox_all_ServiceDepartment = False
+checked_item_Branch = ""
+checked_item_Department = ""
+checked_item_Szi = ""
+checked_item_User = ""
+checked_item_Equipment = ""
+checked_item_ServiceDepartment = ""
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = 0
+defolt_branch = ""
+defolt_department = ""
