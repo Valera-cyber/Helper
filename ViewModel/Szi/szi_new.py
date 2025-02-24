@@ -1,25 +1,22 @@
 import sys
-from PyQt5.QtCore import Qt, QDate
+from PyQt5.QtCore import Qt, QDate, pyqtSignal
 from PyQt5.QtGui import QBrush, QIcon
-from PyQt5.QtWidgets import QAbstractItemView, QTableWidgetItem, QHeaderView, QApplication, QDialog, QMessageBox, \
-    QLabel, QDateEdit
+from PyQt5.QtWidgets import QAbstractItemView, QTableWidgetItem, QHeaderView, QApplication, QDialog, QDateEdit
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore
-from virtualenv.config.convert import NoneType
-
 from Model.database import session
-from Model.model import Branch, Department, User, Usb_type, Usb, Office_type_equipment, Office_equipment, SziType, \
+from Model.model import User, Office_equipment, SziType, \
     SziFileInst, SziAccounting, SziEquipment
 from View.main_container.new_item import Ui_Dialog
 from ViewModel.PaddingDelegate import PaddingDelegate
-from ViewModel.User import user_main
 from ViewModel.main_load import Main_load
-from config_helper import config
 from datetime import datetime
 
 
 class Szi_new(QtWidgets.QDialog):
-    def __init__(self, szi_id,path_helper):
+    dataSignal = pyqtSignal(int)
+
+    def __init__(self, szi_id, path_helper):
         QDialog.__init__(self)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
@@ -41,7 +38,7 @@ class Szi_new(QtWidgets.QDialog):
         self.load_user()
         self.load_equipment()
 
-        self.numberAct=self.reserve_numberAct()
+        self.numberAct = self.reserve_numberAct()
 
         self.ui.btn_cancel.clicked.connect(self.clicked_btn_cancel)
         self.ui.btn_save.clicked.connect(self.clicked_btn_save)
@@ -50,12 +47,14 @@ class Szi_new(QtWidgets.QDialog):
         self.setWindowTitle('Добавить СЗИ')
         self.setWindowIcon(QIcon(path_helper + '/Icons/szi.png'))
 
-        self.szi_new_id=None
+        # self.szi_new_id = None
 
     def closeEvent(self, event):
+        self.dataSignal.emit(0)
         self.s.close()
 
     def clicked_btn_cancel(self):
+        self.dataSignal.emit(0)
         self.s.close()
         self.close()
 
@@ -77,17 +76,17 @@ class Szi_new(QtWidgets.QDialog):
             if self.ui.tw_item.item(1, 1) is not None:
                 sn = self.ui.tw_item.item(1, 1).text()
             else:
-                sn='None'
+                sn = 'None'
 
             if self.ui.tw_item.item(2, 1) is not None:
                 inv = self.ui.tw_item.item(2, 1).text()
             else:
-                inv='None'
+                inv = 'None'
 
             if self.ui.tw_item.item(3, 1) is not None:
                 lic = self.ui.tw_item.item(3, 1).text()
             else:
-                lic='None'
+                lic = 'None'
 
             if self.ui.tw_item.item(4, 1) is not None:
                 rec = self.ui.tw_item.item(4, 1).text()
@@ -148,7 +147,8 @@ class Szi_new(QtWidgets.QDialog):
             new_SziFileAct()
 
             self.s.commit()
-            self.szi_new_id = self.numberAct
+            # self.szi_new_id = self.numberAct
+            self.dataSignal.emit(sziAccounting_id)
             self.close()
 
     def reserve_numberAct(self):

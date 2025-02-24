@@ -2,11 +2,14 @@ import os
 import sys
 from PyQt5.QtWidgets import QMessageBox
 
+from Model.MainForm import MainForm
 from ViewModel.Equipment.equipment_main import Equipment_main
 from ViewModel.Skr.skr_main import Skr_main
 from ViewModel.Szi.szi_main import Szi_main
+from ViewModel.Usb.UsbMainForm import UsbMainForm
 from ViewModel.Usb.usb_main import Usb_main
-from ViewModel.User.user_main import UserMain
+from ViewModel.User.UserMainForm import UserMainForm
+
 
 from config_helper import config
 from PyQt5 import QtWidgets
@@ -39,7 +42,7 @@ class StartMenu(QtWidgets.QMainWindow):
         except Exception as e:
             QMessageBox.warning(self, 'Внимание', str(e), QMessageBox.Ok)
 
-        # self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint)
+
 
     def clicked_btn_szi(self):
 
@@ -51,11 +54,11 @@ class StartMenu(QtWidgets.QMainWindow):
         self.skr.show()
 
     def clicked_btn_user(self):
-        self.user = UserMain(self.path_helper)
+        self.user=UserMainForm()
         self.user.show()
 
     def clicked_btn_usb(self):
-        self.usb = Usb_main(self.path_helper)
+        self.usb = UsbMainForm()
         self.usb.show()
 
     def clicked_btn_equipment(self):

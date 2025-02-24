@@ -1,4 +1,4 @@
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QDialog
 from PyQt5 import QtWidgets
@@ -49,6 +49,7 @@ class Skr_sortView(QtWidgets.QDialog):
         self.s.close()
 
     def clicked_btn_cancel(self):
+
         self.s.close()
         self.close()
 
@@ -82,6 +83,7 @@ class Skr_sortView(QtWidgets.QDialog):
 
         config.write()
         self.close()
+
 
     def insertTab_department(self, index_page):
         department = self.s.query(Department.id, Department.name).order_by(Department.name).filter(

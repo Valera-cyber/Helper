@@ -3,7 +3,6 @@ import pathlib
 import subprocess
 import sys
 from functools import partial
-
 import openpyxl
 from sqlalchemy import or_
 from PyQt5 import QtWidgets, QtCore
@@ -13,11 +12,11 @@ from datetime import datetime
 from PyQt5.QtWidgets import QPushButton, QApplication, QToolButton, QAction, QHeaderView, QTableWidgetItem, \
     QAbstractItemView, QAbstractScrollArea, QMessageBox
 from PyQt5.uic.properties import QtGui
-
 from Model.database import session
+from Model.mainList import MainList
 from Model.model import Office_equipment, Branch, Department, Office_type_equipment, SziAccounting, SziType, \
     SziFileInst, SziFileUninst, SziEquipment, ServiceDepartment
-from View.main_container.container import Ui_MainWindow
+from View.main_container.newContainer import Ui_MainWindow
 from ViewModel.Docx_replace import replace_text
 from ViewModel.Equipment.change_equipment import Change_equipment
 from ViewModel.Equipment.equipment_new import Equipment_new
@@ -47,29 +46,25 @@ class Equipment_main(QtWidgets.QMainWindow):
         self.setWindowTitle("Оргтехника")
         self.setWindowIcon(QIcon(self.path_helper + '/Icons/equipment.png'))
 
-        Main_load.create_tW_list(self.ui)
-        self.ui.tW_list.itemSelectionChanged.connect(self.changed_current_cell_user)
-        Main_load.print_list(self.ui, self.load_equipment())
-
         self.create_menu_button()
 
         self.create_btn_info()
-        self.ui.verticalLayout_2.addWidget(self.btn_info)
+        self.ui.verticalLayout_info.addWidget(self.btn_info)
 
         self.create_tW_info()
-        self.ui.verticalLayout_2.addWidget(self.tW_info)
+        self.ui.verticalLayout_info.addWidget(self.tW_info)
 
         self.create_btn_notes()
-        self.ui.verticalLayout_2.addWidget(self.btn_notes)
+        self.ui.verticalLayout_info.addWidget(self.btn_notes)
 
         self.create_tE_notes()
-        self.ui.verticalLayout_2.addWidget(self.tE_notes)
+        self.ui.verticalLayout_info.addWidget(self.tE_notes)
 
         self.create_btn_szi()
-        self.ui.verticalLayout_2.addWidget(self.btn_szi)
+        self.ui.verticalLayout_info.addWidget(self.btn_szi)
 
         self.create_tW_szi()
-        self.ui.verticalLayout_2.addWidget(self.tW_szi)
+        self.ui.verticalLayout_info.addWidget(self.tW_szi)
 
         self.create_btn_uninstall_szi()
         self.btn_uninstall_szi.setEnabled(False)
@@ -85,7 +80,22 @@ class Equipment_main(QtWidgets.QMainWindow):
 
         self.verticalSpacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum,
                                                     QtWidgets.QSizePolicy.Expanding)  # Подпружиниваем по вертикали
-        self.ui.verticalLayout_2.addItem(self.verticalSpacer)
+        self.ui.verticalLayout_info.addItem(self.verticalSpacer)
+
+        self.new_mainList()
+
+    def update_mainList(self, selrctedRow_id):
+        '''Сигнал clicked_button (ОК or Cancel)с окна szi_new возвращает id нового СЗИ, обновлет если не 0 список СЗИ'''
+        if selrctedRow_id != 0:
+            self.mainList.update_mainList(self.load_equipment(), int(selrctedRow_id))
+
+        self.ui.btn_new.setEnabled(True)
+        self.ui.btn_edit.setEnabled(True)
+
+    def new_mainList(self):
+        self.mainList = MainList(self.load_equipment(), False)
+        self.mainList.dataSignal.connect(self.item_selection_changed_mainList)
+        self.ui.verticalLayout_list.insertWidget(0, self.mainList)
 
     def mouseDoubleClickEvent_tW_act(self, item: QTableWidgetItem):
         def write_to_file(data, filename):
@@ -145,7 +155,7 @@ class Equipment_main(QtWidgets.QMainWindow):
                                                     self.tW_szi.item(self.tW_szi.currentRow(), 6).text())
                         QMessageBox.warning(self, 'Внимание', "Фаил загружен!",
                                             QMessageBox.Ok)
-                        self.print_tW_Szi(Main_load.get_id(self.ui))
+                        self.print_tW_Szi(self.mainList.get_id())
                         self.tW_szi.selectRow(False)
                     else:
                         QMessageBox.warning(self, 'Внимание', "Можно загрузить только один pdf файл!", QMessageBox.Ok)
@@ -203,7 +213,7 @@ class Equipment_main(QtWidgets.QMainWindow):
 
         self.download_SziFileUninst(path_file[0], self.tW_szi.item(self.tW_szi.currentRow(), 6).text())
 
-        self.print_tW_Szi(Main_load.get_id(self.ui))
+        self.print_tW_Szi(self.mainList.get_id())
         self.tW_szi.selectRow(False)
 
     def create_btn_download(self):
@@ -215,7 +225,7 @@ class Equipment_main(QtWidgets.QMainWindow):
 
     def clicked_btn_print(self):
 
-        id_equipment = Main_load.get_id(self.ui)
+        id_equipment = self.mainList.get_id()
         id_SziFileUninst = self.tW_szi.item(self.tW_szi.currentRow(), 6).text()
         id_SziAccounting = self.tW_szi.item(self.tW_szi.currentRow(), 3).text()
 
@@ -280,7 +290,7 @@ class Equipment_main(QtWidgets.QMainWindow):
             self.s.flush()
             return sziFileUninst.id
 
-        id_Equipment = Main_load.get_id(self.ui)
+        id_Equipment = self.mainList.get_id()
         id_SziAccounting = self.tW_szi.item(self.tW_szi.currentRow(), 3).text()
 
         if check_last_equipment():
@@ -357,34 +367,31 @@ class Equipment_main(QtWidgets.QMainWindow):
         self.ui.btn_sort.setIcon(QIcon(self.path_helper + '/Icons/sorts.png'))
 
     def clicked_btn_info(self):
-        if Main_load.get_id(self.ui) == None:
+        if self.mainList.get_id() == None:
             return
 
         if self.btn_info.isChecked():
             self.btn_info.setIcon(QIcon(self.path_helper + '/Icons/unwrap.png'))
             self.tW_info.setVisible(True)
-            self.print_fill_equipment(Main_load.get_id(self.ui))
+            self.print_fill_equipment(self.mainList.get_id())
         else:
             self.btn_info.setIcon(QIcon(self.path_helper + '/Icons/wrap.png'))
             self.tW_info.setVisible(False)
 
     def clicked_btn_new(self):
         self.equipment_new = Equipment_new(None)
+        self.equipment_new.dataSignal.connect(self.update_mainList)
         self.equipment_new.exec_()
-        #
-        # Main_load.print_list(self.ui, self.load_usb())
-        # Main_load.select_row_intable(self.ui, str(self.new_usb.usb_id))
 
     def clicked_btn_edit(self):
-        self.equipment_new = Equipment_new(Main_load.get_id(self.ui))
+        self.equipment_new = Equipment_new(self.mainList.get_id())
+        self.equipment_new.dataSignal.connect(self.update_mainList)
         self.equipment_new.exec_()
 
     def clicked_btn_sort(self):
-        sortView = Equipment_sortView()
-        sortView.exec_()
-
-        Main_load.print_list(self.ui, self.load_equipment())
-        Main_load.select_row_intable(self.ui)
+        self.sort_view = Equipment_sortView()
+        self.sort_view.dataSignal.connect(self.update_mainList)
+        self.sort_view.exec_()
 
     def clicked_btn_export(self):
         '''Экспорт в эксель'''
@@ -422,9 +429,9 @@ class Equipment_main(QtWidgets.QMainWindow):
             opener = "open" if sys.platform == "darwin" else "xdg-open"
             subprocess.call([opener, path_exportEquipment + '/Equipments.xlsx'])
 
-    def changed_current_cell_user(self):
+    def item_selection_changed_mainList(self):
         '''Действие при смене ячейки в списке'''
-        equipment_id = Main_load.get_id(self.ui)
+        equipment_id = self.mainList.get_id()
         if equipment_id is not None:
             if self.btn_info.isChecked():
                 self.print_fill_equipment(equipment_id)
@@ -475,13 +482,13 @@ class Equipment_main(QtWidgets.QMainWindow):
         self.btn_notes.setIconSize(QtCore.QSize(30, 30))
 
     def clicked_btn_notes(self):
-        if Main_load.get_id(self.ui) == None:
+        if self.mainList.get_id() == None:
             return
 
         if self.btn_notes.isChecked():
             self.btn_notes.setIcon(QIcon(self.path_helper + '/Icons/unwrap.png'))
             self.tE_notes.setVisible(True)
-            self.print_tE_notes(Main_load.get_id(self.ui))
+            self.print_tE_notes(self.mainList.get_id())
         else:
             self.btn_notes.setIcon(QIcon(self.path_helper + '/Icons/wrap.png'))
             self.tE_notes.setVisible(False)
@@ -502,13 +509,13 @@ class Equipment_main(QtWidgets.QMainWindow):
         self.btn_szi.setIconSize(QtCore.QSize(30, 30))
 
     def clicked_btn_szi(self):
-        if Main_load.get_id(self.ui) == None:
+        if self.mainList.get_id() == None:
             return
 
         if self.btn_szi.isChecked():
             self.btn_szi.setIcon(QIcon(self.path_helper + '/Icons/unwrap.png'))
             self.tW_szi.setVisible(True)
-            # self.print_tE_notes(Main_load.get_id(self.ui))
+            # self.print_tE_notes(Mself.mainList.get_id())
         else:
             self.btn_szi.setIcon(QIcon(self.path_helper + '/Icons/wrap.png'))
             self.tW_szi.setVisible(False)
@@ -533,11 +540,11 @@ class Equipment_main(QtWidgets.QMainWindow):
             self.btn_download.setEnabled(False)
 
     def change_equipment(self):
-        change_equipment = Change_equipment(Main_load.get_id(self.ui),
+        change_equipment = Change_equipment(self.mainList.get_id(),
                                             self.tW_szi.item(self.tW_szi.currentRow(), 3).text())
         change_equipment.exec_()
 
-        self.print_tW_Szi(Main_load.get_id(self.ui))
+        self.print_tW_Szi(self.mainList.get_id())
 
     def contextMenuRequested_tW_szi(self, pos):
         if self.tW_szi.currentColumn() == 2:

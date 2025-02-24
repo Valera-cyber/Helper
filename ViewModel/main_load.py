@@ -39,26 +39,26 @@ class Main_load():
         height_heder = 24
         return ((row_count * height_row) + height_heder)
 
-    def create_tW_list(ui):
-        numrows = 0
-        numcols = 2
-
-        ui.tW_list.setColumnCount(numcols)
-        ui.tW_list.setRowCount(numrows)
-
-        ui.tW_list.setEditTriggers(QAbstractItemView.NoEditTriggers)  # read only
-        ui.tW_list.verticalHeader().setVisible(False)
-
-        ui.tW_list.setHorizontalHeaderItem(0, QTableWidgetItem('employeeId'))
-        ui.tW_list.setHorizontalHeaderItem(1, QTableWidgetItem('Пользователи'))
-        ui.tW_list.setColumnHidden(0, True)
-        ui.tW_list.horizontalHeader().hide()
-
-
-
-        header = ui.tW_list.horizontalHeader()
-        # header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(1, QHeaderView.Stretch)
+    # def create_tW_list(ui):
+    #     numrows = 0
+    #     numcols = 2
+    #
+    #     ui.tW_list.setColumnCount(numcols)
+    #     ui.tW_list.setRowCount(numrows)
+    #
+    #     ui.tW_list.setEditTriggers(QAbstractItemView.NoEditTriggers)  # read only
+    #     ui.tW_list.verticalHeader().setVisible(False)
+    #
+    #     ui.tW_list.setHorizontalHeaderItem(0, QTableWidgetItem('employeeId'))
+    #     ui.tW_list.setHorizontalHeaderItem(1, QTableWidgetItem('Пользователи'))
+    #     ui.tW_list.setColumnHidden(0, True)
+    #     ui.tW_list.horizontalHeader().hide()
+    #
+    #
+    #
+    #     header = ui.tW_list.horizontalHeader()
+    #     # header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+    #     header.setSectionResizeMode(1, QHeaderView.Stretch)
 
     def print_list(ui, sql):
         '''Заполняем таблицу из SQL запроса'''

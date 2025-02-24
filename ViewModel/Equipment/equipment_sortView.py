@@ -1,4 +1,4 @@
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QDialog
 from PyQt5 import QtWidgets
@@ -11,6 +11,7 @@ from config_helper import config
 
 
 class Equipment_sortView(QtWidgets.QDialog):
+    dataSignal = pyqtSignal(int)
     def __init__(self):
         QDialog.__init__(self)
         self.ui = Ui_Form()
@@ -51,6 +52,7 @@ class Equipment_sortView(QtWidgets.QDialog):
     def clicked_btn_cancel(self):
         self.s.close()
         self.close()
+        self.dataSignal.emit(0)
 
     def load_status(self):
         self.ui.checkB_statusOn.setChecked(Helper_all.convert_bool(config['Equipment']['checkB_statusOn']))
@@ -82,6 +84,7 @@ class Equipment_sortView(QtWidgets.QDialog):
 
         config.write()
         self.close()
+        self.dataSignal.emit(-1)
 
     def insertTab_department(self, index_page):
         department = self.s.query(Department.id, Department.name).order_by(Department.name).filter(

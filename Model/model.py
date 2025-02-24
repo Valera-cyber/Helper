@@ -32,6 +32,9 @@ class Usb(Base):
     usb_type_id = Column(Integer, ForeignKey('usb_types.id'))
     status = Column(Boolean, unique=False)
     user_id = Column(Integer, ForeignKey('Users.employeeId'))
+    branch_id = Column(Integer, ForeignKey('branches.id'))
+    department_id = Column(Integer, ForeignKey('departments.id'))
+    serviceDepartment_id = Column(Integer, ForeignKey('serviceDepartment.id'))
 
 
 class Usb_type(Base):

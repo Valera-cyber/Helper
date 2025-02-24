@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QBrush
 from PyQt5.QtWidgets import QAbstractItemView, QTableWidgetItem, QHeaderView, QApplication, QDialog, QMessageBox, \
     QLabel, QDateEdit
@@ -17,6 +17,7 @@ from datetime import datetime
 
 
 class Equipment_new(QtWidgets.QDialog):
+    dataSignal = pyqtSignal(int)
     def __init__(self, equipment_id):
         QDialog.__init__(self)
         self.ui = Ui_Dialog()
@@ -159,14 +160,9 @@ class Equipment_new(QtWidgets.QDialog):
                 self.s.commit()
                 self.id_new_arm = self.equipment_id
 
+            self.dataSignal.emit(int(self.id_new_arm))
             self.close()
 
-    # def create_(self):
-    #     self.comboBox_type = QtWidgets.QComboBox()
-    #     self.ui.tw_item.setCellWidget(1, 1, self.comboBox_type)
-    #
-    #     for i in self.s.query(Usb_type):
-    #         self.comboBox_type.addItem(i.name, i.id)
 
     def create_item_data(self):
 

@@ -1,0 +1,48 @@
+[Setting_helper]
+path_db = ""
+[Helper_export]
+path_export = /home/valyak/PycharmProjects/Helper/ViewModel/Szi
+[User]
+checkBox_branch = False
+checkBox_department = False
+checkBox_system = False
+checkBox_szi = False
+checked_branch = ""
+checked_department = ""
+checked_system = ""
+checked_szi = ""
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = ""
+defolt_branch = ""
+defolt_department = ""
+[Usb]
+checkBox_branch = False
+checkBox_department = False
+checked_branch = ""
+checked_department = ""
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = ""
+defolt_branch = ""
+defolt_department = ""
+[Equipment]
+checkBox_branch = False
+checkBox_department = False
+checked_branch = ""
+checked_department = ""
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = ""
+defolt_branch = ""
+defolt_department = ""
+[Skr]
+checkBox_branch = False
+checkBox_department = False
+checked_branch = ""
+checked_department = ""
+checkB_statusOn = True
+checkB_statusOff = True
+current_indexPage = ""
+defolt_branch = ""
+defolt_department = ""

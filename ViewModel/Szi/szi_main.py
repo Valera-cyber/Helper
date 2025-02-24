@@ -11,12 +11,14 @@ from PyQt5.QtGui import QIcon, QBrush
 from PyQt5.QtWidgets import QApplication, QHeaderView, QTableWidgetItem, \
     QAbstractItemView, QMessageBox
 from Model.database import session
+from Model.mainList import MainList
 from Model.model import Office_equipment, Branch, Department, SziAccounting, SziType, \
     SziFileInst, SziFileUninst, SziEquipment, User
-from View.main_container.container import Ui_MainWindow
+from View.main_container.newContainer import Ui_MainWindow
 from ViewModel.Docx_replace import replace_text
 from ViewModel.Helper_all import Helper_all
 from ViewModel.Szi.szi_new import Szi_new
+from ViewModel.Szi.list_type_szi import ListTypeSzi
 from ViewModel.main_load import Main_load
 from ViewModel.Szi.szi_sorView import Szi_sortView
 from config_helper import config
@@ -39,24 +41,22 @@ class Szi_main(QtWidgets.QMainWindow):
         self.setWindowTitle("Учет СЗИ")
         self.setWindowIcon(QIcon(self.path_helper + '/Icons/szi.png'))
 
-        Main_load.create_tW_list(self.ui)
-        self.ui.tW_list.setColumnHidden(0,False)
-        self.ui.tW_list.itemSelectionChanged.connect(self.changed_current_cell_user)
-        Main_load.print_list(self.ui, self.load_szi())
-
         self.create_menu_button()
 
+        self.create_btn_type_szi()
+        self.ui.horizontalLayout_4.insertWidget(5, self.btn_type_szi)
+
         self.create_btn_info()
-        self.ui.verticalLayout_2.addWidget(self.btn_info)
+        self.ui.verticalLayout_info.addWidget(self.btn_info)
 
         self.create_tW_info()
-        self.ui.verticalLayout_2.addWidget(self.tW_info)
+        self.ui.verticalLayout_info.addWidget(self.tW_info)
 
         self.create_btn_akt()
-        self.ui.verticalLayout_2.addWidget(self.btn_akt)
+        self.ui.verticalLayout_info.addWidget(self.btn_akt)
 
         self.create_tW_act()
-        self.ui.verticalLayout_2.addWidget(self.tW_act)
+        self.ui.verticalLayout_info.addWidget(self.tW_act)
 
         self.create_btn_uninstall_szi()
         self.btn_uninstall_szi.setEnabled(False)
@@ -64,7 +64,63 @@ class Szi_main(QtWidgets.QMainWindow):
 
         self.verticalSpacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum,
                                                     QtWidgets.QSizePolicy.Expanding)  # Подпружиниваем по вертикали
-        self.ui.verticalLayout_2.addItem(self.verticalSpacer)
+        self.ui.verticalLayout_info.addItem(self.verticalSpacer)
+
+        self.new_mainList()
+
+    def clicked_btn_type_szi(self):
+        self.type_szi=ListTypeSzi()
+        self.type_szi.show()
+
+    def create_btn_type_szi(self):
+        '''Создаем кноку свернуть развернуть инфо'''
+        self.btn_type_szi = QtWidgets.QToolButton()
+        self.btn_type_szi.clicked.connect(self.clicked_btn_type_szi)
+        self.btn_type_szi.setText('Тип СЗИ')
+        self.btn_type_szi.setIcon(QIcon(self.path_helper + '/Icons/install.png'))
+        self.btn_type_szi.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
+
+    def update_mainList(self, selrctedRow_id):
+        '''Сигнал clicked_button (ОК or Cancel)с окна szi_new возвращает id нового СЗИ, обновлет если не 0 список СЗИ'''
+        if selrctedRow_id != 0:
+            self.mainList.update_mainList(self.load_szi(), int(selrctedRow_id))
+
+        self.ui.btn_new.setEnabled(True)
+        self.ui.btn_edit.setEnabled(True)
+
+    def item_selection_changed_mainList(self, current_id):
+        '''Действие при смене ячейки в списке'''
+        if current_id != '':
+            self.chek_uninst_szi(current_id)
+
+            if self.btn_info.isChecked():
+                self.print_fill_szi(current_id)
+
+            if self.btn_akt.isChecked():
+                self.print_tW_act()
+
+        else:
+            self.btn_uninstall_szi.setEnabled(False)
+
+            self.tW_info.setItem(0, 1, QTableWidgetItem(''))
+            self.tW_info.setItem(1, 1, QTableWidgetItem(''))
+            self.tW_info.setItem(2, 1, QTableWidgetItem(''))
+            self.tW_info.setItem(3, 1, QTableWidgetItem(''))
+            self.tW_info.setItem(4, 1, QTableWidgetItem(''))
+            self.tW_info.setItem(5, 1, QTableWidgetItem(''))
+            self.tW_info.setItem(6, 1, QTableWidgetItem(''))
+            self.tW_info.setItem(7, 1, QTableWidgetItem(''))
+            self.tW_info.setItem(8, 1, QTableWidgetItem(''))
+            self.tW_info.setItem(9, 1, QTableWidgetItem(''))
+            self.tW_info.setItem(10, 1, QTableWidgetItem(''))
+            self.tW_info.setItem(11, 1, QTableWidgetItem(''))
+
+            self.tW_act.setRowCount(0)
+
+    def new_mainList(self):
+        self.mainList = MainList(self.load_szi(), False)
+        self.mainList.dataSignal.connect(self.item_selection_changed_mainList)
+        self.ui.verticalLayout_list.insertWidget(0, self.mainList)
 
     def chek_uninst_szi(self, id_sziAccounting):
         sziAccounting = self.s.query(SziAccounting.fileUninstSzi_id).filter(SziAccounting.id == id_sziAccounting).one()
@@ -124,11 +180,11 @@ class Szi_main(QtWidgets.QMainWindow):
 
             return id_SziFileUninst
 
-        id_SziAccounting = Main_load.get_id(self.ui)
+        id_SziAccounting = self.mainList.get_id()
         get_list_equipment_id(id_SziAccounting)
         save_act_uninst(id_SziAccounting)
 
-        self.changed_current_cell_user()
+        self.print_tW_act()
 
     def create_btn_uninstall_szi(self):
         self.btn_uninstall_szi = QtWidgets.QToolButton()
@@ -139,7 +195,7 @@ class Szi_main(QtWidgets.QMainWindow):
 
     def print_tW_act(self):
 
-        id_SziAccounting = Main_load.get_id(self.ui)
+        id_SziAccounting = self.mainList.get_id()
 
         sziAccounting = self.s.query(SziAccounting, SziFileInst, SziFileUninst). \
             select_from(SziAccounting). \
@@ -197,7 +253,7 @@ class Szi_main(QtWidgets.QMainWindow):
         self.btn_akt.setIconSize(QtCore.QSize(30, 30))
 
     def clicked_btn_akt(self):
-        if Main_load.get_id(self.ui) == None:
+        if self.mainList.get_id() == None:
             return
 
         if self.btn_akt.isChecked():
@@ -234,7 +290,7 @@ class Szi_main(QtWidgets.QMainWindow):
     def print_act(self):
 
         def print_instal():
-            id_SziAccounting = Main_load.get_id(self.ui)
+            id_SziAccounting = self.mainList.get_id()
 
             list_id = list()
             for i in self.s.query(SziEquipment.equipment_id).filter(SziEquipment.sziAccounting_id == id_SziAccounting):
@@ -254,7 +310,7 @@ class Szi_main(QtWidgets.QMainWindow):
                           'Date': date_act,
                           'Number': number_act,
                           'Equipment': locationEquipmentSkr,
-                          'NameSzi': self.ui.tW_list.item(self.ui.tW_list.currentRow(), 1).text(),
+                          'NameSzi': self.tW_act.item(self.tW_act.currentRow(), 1).text(),
                           'Id_journalInstSzi': id_SziAccounting,
                           'Lic_journalInstSzi': self.tW_info.item(3, 1).text(),
                           'Title': self.tW_info.item(11, 1).text(),
@@ -280,7 +336,7 @@ class Szi_main(QtWidgets.QMainWindow):
 
                 return list_equipmentId
 
-            id_SziAccounting = Main_load.get_id(self.ui)
+            id_SziAccounting = self.mainList.get_id()
             sziAccounting = self.s.query(SziAccounting).filter(SziAccounting.id == id_SziAccounting).one()
             id_fileUninstSzi = sziAccounting.fileUninstSzi_id
 
@@ -320,12 +376,12 @@ class Szi_main(QtWidgets.QMainWindow):
             try:
                 print_instal()
             except Exception as e:
-                QMessageBox.warning(self,'Внимание',str(e),QMessageBox.Ok)
+                QMessageBox.warning(self, 'Внимание', str(e), QMessageBox.Ok)
         elif self.tW_act.currentColumn() == 2:
             try:
                 print_unistal()
             except Exception as e:
-                QMessageBox.warning(self,'Внимание',str(e),QMessageBox.Ok)
+                QMessageBox.warning(self, 'Внимание', str(e), QMessageBox.Ok)
 
     def read_act(self):
 
@@ -420,7 +476,7 @@ class Szi_main(QtWidgets.QMainWindow):
             id_SziFileInst = sziAccounting[0]
             self.download_SziFileInst(id_SziFileInst, path_file)
 
-            self.changed_current_cell_user()
+            self.print_tW_act()
         else:
             '''Делаем загрузку акта деинсталяции'''
             id_fileUninstSzi_id = self.s.query(SziAccounting.fileUninstSzi_id). \
@@ -428,7 +484,7 @@ class Szi_main(QtWidgets.QMainWindow):
 
             self.download_SziFileUninst(id_fileUninstSzi_id[0], path_file)
 
-            self.changed_current_cell_user()
+            self.print_tW_act()
 
     def create_tW_act(self):
         self.tW_act = QtWidgets.QTableWidget()
@@ -509,13 +565,13 @@ class Szi_main(QtWidgets.QMainWindow):
         self.tW_info.setSelectionMode(QAbstractItemView.NoSelection)
 
     def clicked_btn_info(self):
-        if Main_load.get_id(self.ui) == None:
+        if self.mainList.get_id() == None:
             return
 
         if self.btn_info.isChecked():
             self.btn_info.setIcon(QIcon(self.path_helper + '/Icons/unwrap.png'))
             self.tW_info.setVisible(True)
-            self.print_fill_szi(Main_load.get_id(self.ui))
+            self.print_fill_szi(self.mainList.get_id())
         else:
             self.btn_info.setIcon(QIcon(self.path_helper + '/Icons/wrap.png'))
             self.tW_info.setVisible(False)
@@ -602,9 +658,12 @@ class Szi_main(QtWidgets.QMainWindow):
             filter(Branch.id.in_((checked_brabch))). \
             filter(Department.id.in_((checked_department))). \
             filter(User.employeeId.in_((checked_employeeId))). \
-            filter(Office_equipment.serviceDepartment_id.in_((checked_item_ServiceDepartment))).\
+            filter(Office_equipment.serviceDepartment_id.in_((checked_item_ServiceDepartment))). \
             order_by(SziAccounting.id). \
             group_by(SziAccounting.id)
+
+        self.ui.statusBar.showMessage(' Количество: ' + str(szi.count()))
+
         return szi
 
     def print_fill_szi(self, current_id):
@@ -632,56 +691,22 @@ class Szi_main(QtWidgets.QMainWindow):
         self.tW_info.setItem(10, 1, QTableWidgetItem(sziAccounting[3].fio))
         self.tW_info.setItem(11, 1, QTableWidgetItem(sziAccounting[3].post))
 
-    def changed_current_cell_user(self):
-        '''Действие при смене ячейки в списке'''
-
-        current_id = Main_load.get_id(self.ui)
-
-        if current_id is not None:
-            self.chek_uninst_szi(current_id)
-
-            if self.btn_info.isChecked():
-                self.print_fill_szi(current_id)
-
-            if self.btn_akt.isChecked():
-                self.print_tW_act()
-
-
-        else:
-            self.btn_uninstall_szi.setEnabled(False)
-
-            self.tW_info.setItem(0, 1, QTableWidgetItem(''))
-            self.tW_info.setItem(1, 1, QTableWidgetItem(''))
-            self.tW_info.setItem(2, 1, QTableWidgetItem(''))
-            self.tW_info.setItem(3, 1, QTableWidgetItem(''))
-            self.tW_info.setItem(4, 1, QTableWidgetItem(''))
-            self.tW_info.setItem(5, 1, QTableWidgetItem(''))
-            self.tW_info.setItem(6, 1, QTableWidgetItem(''))
-            self.tW_info.setItem(7, 1, QTableWidgetItem(''))
-            self.tW_info.setItem(8, 1, QTableWidgetItem(''))
-            self.tW_info.setItem(9, 1, QTableWidgetItem(''))
-            self.tW_info.setItem(10, 1, QTableWidgetItem(''))
-            self.tW_info.setItem(11, 1, QTableWidgetItem(''))
-
     def clicked_btn_new(self):
         self.szi_new = Szi_new(None, self.path_helper)
-        self.szi_new.exec_()
-
-        if self.szi_new.szi_new_id == None:
-            return
-
-        Main_load.print_list(self.ui, self.load_szi())
-        Main_load.select_row_intable(self.ui, str(self.szi_new.szi_new_id))
+        self.szi_new.dataSignal.connect(self.update_mainList)
+        self.ui.btn_new.setEnabled(False)
+        self.ui.btn_edit.setEnabled(False)
+        self.szi_new.show()
 
     def clicked_btn_edit(self):
         print('clicked_btn_edit')
 
     def clicked_btn_sort(self):
         self.sort_view = Szi_sortView()
+        self.sort_view.dataSignal.connect(self.update_mainList)
         self.sort_view.exec_()
 
-        Main_load.print_list(self.ui, self.load_szi())
-        Main_load.select_row_intable(self.ui)
+        # self.mainList.update_mainList(self.load_szi(), 0)
 
     def get_Eqipment_currentSzi(self, id_SziAccounting) -> str:
         '''Возвращаем имена объектов выбранной СЗИ'''
@@ -728,10 +753,10 @@ class Szi_main(QtWidgets.QMainWindow):
         if rezult == QMessageBox.Cancel:
             return
 
-        count_row = self.ui.tW_list.rowCount()
+        count_row = self.mainList.rowCount()
         list_Id = []
         for i in range(count_row):
-            list_Id.append(self.ui.tW_list.item(i, 0).text())
+            list_Id.append(self.mainList.item(i, 0).text())
         list_export = []
         for i in list_Id:
             row = []

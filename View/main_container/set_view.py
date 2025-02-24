@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(512, 688)
+        Form.resize(512, 684)
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.label_name = QtWidgets.QLabel(Form)
@@ -48,12 +48,12 @@ class Ui_Form(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         spacerItem = QtWidgets.QSpacerItem(13, 13, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
-        self.btn_save = QtWidgets.QPushButton(Form)
-        self.btn_save.setObjectName("btn_save")
-        self.horizontalLayout.addWidget(self.btn_save)
         self.btn_cancel = QtWidgets.QPushButton(Form)
         self.btn_cancel.setObjectName("btn_cancel")
         self.horizontalLayout.addWidget(self.btn_cancel)
+        self.btn_save = QtWidgets.QPushButton(Form)
+        self.btn_save.setObjectName("btn_save")
+        self.horizontalLayout.addWidget(self.btn_save)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
 
         self.retranslateUi(Form)
@@ -66,5 +66,5 @@ class Ui_Form(object):
         self.label_name.setText(_translate("Form", "TextLabel"))
         self.checkB_statusOff.setText(_translate("Form", "Уволен"))
         self.checkB_statusOn.setText(_translate("Form", "Активен            "))
-        self.btn_save.setText(_translate("Form", "ОК"))
         self.btn_cancel.setText(_translate("Form", "Отмена"))
+        self.btn_save.setText(_translate("Form", "ОК"))

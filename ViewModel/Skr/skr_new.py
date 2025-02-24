@@ -10,7 +10,7 @@ from Model.model import Branch, Department, User, Usb_type, Usb, Office_type_equ
 from View.main_container.new_item import Ui_Dialog
 from ViewModel.PaddingDelegate import PaddingDelegate
 from ViewModel.Skr.Skr_open import Skr_open
-from ViewModel.User import user_main
+
 from ViewModel.main_load import Main_load
 from config_helper import config
 from datetime import datetime
@@ -97,10 +97,14 @@ class Skr_new(QtWidgets.QDialog):
         for i in user:
             self.comboBox_user.addItem(i[1], i[0])
 
+        self.comboBox_user.setCurrentIndex(-1)
+
     def load_comboBox_equipment(self):
         equipment = self.s.query(Office_equipment.id,Office_equipment.name_equipment).order_by(Office_equipment.name_equipment)
         for i in equipment:
             self.comboBox_equipment.addItem(i[1], i[0])
+
+        self.comboBox_equipment.setCurrentIndex(-1)
 
     def create_item_data(self):
 

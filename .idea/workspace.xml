@@ -4,32 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89346c4c-d218-4cea-9906-792d9e2ee116" name="Changes" comment="Szi-ok">
-      <change afterPath="$PROJECT_DIR$/Export_files/Szi/Акт вывода СЗИ - 1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Export_files/Szi/Акт вывода СЗИ - 11.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Export_files/Szi/Акт вывода СЗИ - 169.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Export_files/Szi/Акт вывода СЗИ - 361.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Export_files/Szi/Акт установки СЗИ - 10.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Export_files/Szi/Акт установки СЗИ - 12.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Export_files/Szi/Акт установки СЗИ - 16.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Export_files/Szi/Акт установки СЗИ - 6.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Export_files/Szi/Акт установки СЗИ - 97.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Icons/security.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Icons/szi.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/main_container/set_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/main_container/set_view.ui" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Equipment/change_equipment.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_sortView.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_sortView.py" afterDir="false" />
+    <list default="true" id="89346c4c-d218-4cea-9906-792d9e2ee116" name="Changes" comment="newContainer">
+      <change afterPath="$PROJECT_DIR$/Model/BtnMenu.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/BtnWrap.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/ExportExls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/MainForm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/OpenPdfFile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/PrintDocForm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/TwInfo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/WidgetSerchUser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/mainList.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ViewModel/Szi/helper_config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_sortView.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/User/user_sortView.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Szi/list_type_szi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Szi/new_type_szi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/UsbChengUserForm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/UsbMainForm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/UsbNewForm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/UsbSortForm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/User/UserMainForm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/User/UserNewForm.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/base.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/comand" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export_files/users.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Form_print/Inst_SZI.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Form_print/Inst_SZI.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Form_print/Reg_form.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Form_print/Reg_form.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Form_print/Uninst_SZI.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Form_print/Uninst_SZI.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Equipments.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 22.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 24.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 25.pdf" beforeDir="false" />
@@ -48,28 +47,35 @@
       <change beforePath="$PROJECT_DIR$/Helper_export/USB/9-Злобина О.В..docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Helper_export/USB/Equipment.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Helper_export/USB/USB.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/USB/new.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Helper_export/USB/Кузнецова О.В..pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/newTab_sortView.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/newTab_sortView.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Skr/Skr.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/main_container/set_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/set_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/main_container/set_view.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/set_view.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/main_container/setting_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/setting_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/main_container/setting_view.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/setting_view.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/Equipment/equipment_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/Equipment/equipment_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_new.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Helper_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Helper_all.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Setting_helper/Setting_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Setting_helper/Setting_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Skr/skr_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Equipment/equipment_sortView.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_sortView.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Skr/skr_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_new.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Skr/skr_sortView.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_sortView.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/Szi/szi_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Szi/szi_main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/Szi/szi_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Szi/szi_new.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/Szi/szi_sorView.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Szi/szi_sorView.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/Usb/usb_chengUser.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_chengUser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Usb/usb_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/Usb/usb_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_new.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/User/helper_config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/user_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/user_new.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/User/helper_db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_new.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_sortView.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/UserSortForm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModel/main_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/main_load.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/setting_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/setting_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comand" beforeDir="false" afterPath="$PROJECT_DIR$/comand" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/config_helper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helper_db" beforeDir="false" afterPath="$PROJECT_DIR$/helper_db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stylesheet.py" beforeDir="false" afterPath="$PROJECT_DIR$/stylesheet.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,8 +116,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.UsbChengUserForm.executor": "Run",
+    "Python.UsbNewForm.executor": "Run",
+    "Python.UserNewForm.executor": "Run",
     "Python.change_equipment.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.mainform.executor": "Run",
     "Python.szi_new.executor": "Run",
     "Python.test.executor": "Run",
     "Python.user_main.executor": "Run",
@@ -139,7 +149,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="change_equipment" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="MainForm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Helper" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -148,11 +158,77 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ViewModel/Equipment" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Model" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ViewModel/Equipment/change_equipment.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Model/MainForm.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UsbChengUserForm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Helper" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ViewModel/Usb" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ViewModel/Usb/UsbChengUserForm.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UsbNewForm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Helper" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ViewModel/Usb" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ViewModel/Usb/UsbNewForm.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UserNewForm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Helper" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ViewModel/User" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ViewModel/User/UserNewForm.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -183,28 +259,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="szi_new" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Helper" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ViewModel/Szi" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ViewModel/Szi/szi_new.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Helper" />
       <option name="ENV_FILES" value="" />
@@ -227,57 +281,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="user_main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Helper" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ViewModel/User" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ViewModel/User/user_main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="user_new" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Helper" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ViewModel/User" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ViewModel/User/user_new.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.change_equipment" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.szi_new" />
-        <item itemvalue="Python.user_new" />
-        <item itemvalue="Python.user_main" />
+        <item itemvalue="Python.UsbChengUserForm" />
+        <item itemvalue="Python.UsbNewForm" />
+        <item itemvalue="Python.UserNewForm" />
+        <item itemvalue="Python.MainForm" />
       </list>
     </recent_temporary>
   </component>
@@ -377,7 +387,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737450008021</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="newContainer">
+      <option name="closed" value="true" />
+      <created>1738647275421</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1738647275421</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -400,6 +418,18 @@
     <MESSAGE value="skr" />
     <MESSAGE value="Szi" />
     <MESSAGE value="Szi-ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="Szi-ok" />
+    <MESSAGE value="newContainer" />
+    <option name="LAST_COMMIT_MESSAGE" value="newContainer" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

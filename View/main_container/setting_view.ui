@@ -205,16 +205,16 @@ border: 0px solid #3873d9;
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="btn_save">
+      <widget class="QPushButton" name="btn_cancel">
        <property name="text">
-        <string>ОК</string>
+        <string>Отмена</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btn_cancel">
+      <widget class="QPushButton" name="btn_save">
        <property name="text">
-        <string>Отмена</string>
+        <string>ОК</string>
        </property>
       </widget>
      </item>

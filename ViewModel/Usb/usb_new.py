@@ -8,7 +8,7 @@ from Model.database import session
 from Model.model import Branch, Department, User, Usb_type, Usb
 from View.main_container.new_item import Ui_Dialog
 from ViewModel.PaddingDelegate import PaddingDelegate
-from ViewModel.User import user_main
+
 from config_helper import config
 
 class Usb_new(QtWidgets.QDialog):

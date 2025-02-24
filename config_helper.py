@@ -9,7 +9,10 @@ config = ConfigObj(path_config_file_name, encoding='utf8')
 
 if os.path.exists(path_config_file_name) == False:
 
-    config['Setting_helper'] = {'path_db': ''}
+    config['Setting_helper'] = {
+        'path_db': '',
+        'path_helper':path_helper,
+        }
 
     config['Helper_export'] = {'path_export': path_helper+'/Export_files'}
 
@@ -34,11 +37,17 @@ if os.path.exists(path_config_file_name) == False:
         }
 
     config['Usb'] = {
-        'checkBox_all_Branch':'False',
-        'checkBox_all_Department':'False',
+        'checkBox_all_Branch': 'False',
+        'checkBox_all_Department': 'False',
+        'checkBox_all_ServiceDepartment': 'False',
+        'checkBox_all_UsbType': 'False',
+        'checkBox_all_User': 'False',
 
         'checked_item_Branch': '',
         'checked_item_Department':'',
+        'checked_item_ServiceDepartment': '',
+        'checked_item_UsbType': '',
+        'checked_item_User': '',
 
         'checkB_statusOn':'True',
         'checkB_statusOff':'True',

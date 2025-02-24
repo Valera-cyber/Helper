@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>512</width>
-    <height>688</height>
+    <height>684</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -85,16 +85,16 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="btn_save">
+      <widget class="QPushButton" name="btn_cancel">
        <property name="text">
-        <string>ОК</string>
+        <string>Отмена</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btn_cancel">
+      <widget class="QPushButton" name="btn_save">
        <property name="text">
-        <string>Отмена</string>
+        <string>ОК</string>
        </property>
       </widget>
      </item>
