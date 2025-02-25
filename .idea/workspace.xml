@@ -4,79 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89346c4c-d218-4cea-9906-792d9e2ee116" name="Changes" comment="newContainer">
-      <change afterPath="$PROJECT_DIR$/Model/BtnMenu.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/BtnWrap.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/ExportExls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/MainForm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/OpenPdfFile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/PrintDocForm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/TwInfo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/WidgetSerchUser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/mainList.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Szi/helper_config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Szi/list_type_szi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Szi/new_type_szi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/UsbChengUserForm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/UsbMainForm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/UsbNewForm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/Usb/UsbSortForm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/User/UserMainForm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ViewModel/User/UserNewForm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base.db" afterDir="false" />
+    <list default="true" id="89346c4c-d218-4cea-9906-792d9e2ee116" name="Changes" comment="user_usb">
+      <change afterPath="$PROJECT_DIR$/ViewModel/InfSystem/InfSysMainForm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Export_files/users.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Form_print/Inst_SZI.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Form_print/Inst_SZI.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Form_print/Reg_form.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Form_print/Reg_form.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Form_print/Uninst_SZI.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Form_print/Uninst_SZI.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 22.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 24.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 25.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 32.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 37.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 39.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 40.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт вывода СЗИ - 6.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 106.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 33.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 52.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/Equipment/Акт установки СЗИ - 90.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/USB/1-qqqqqqqqqqqqqqqqq1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/USB/1-Бахарев Д.Н..docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/USB/10102024090313.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/USB/9-Злобина О.В..docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/USB/Equipment.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/USB/USB.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper_export/USB/Кузнецова О.В..pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/newTab_sortView.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/newTab_sortView.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skr/Skr.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/main_container/set_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/set_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/main_container/set_view.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/set_view.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/main_container/setting_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/setting_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/main_container/setting_view.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/main_container/setting_view.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Equipment/equipment_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Equipment/equipment_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_new.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Equipment/equipment_sortView.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Equipment/equipment_sortView.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Skr/skr_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_new.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Skr/skr_sortView.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Skr/skr_sortView.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Szi/szi_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Szi/szi_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Szi/szi_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Szi/szi_new.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Szi/szi_sorView.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Szi/szi_sorView.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Usb/usb_chengUser.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_chengUser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/Usb/usb_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/Usb/usb_new.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/User/helper_config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/User/helper_db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_new.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/User/user_sortView.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/User/UserSortForm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModel/main_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/main_load.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comand" beforeDir="false" afterPath="$PROJECT_DIR$/comand" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/config_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper_db" beforeDir="false" afterPath="$PROJECT_DIR$/helper_db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/MainForm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/MainForm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Start_menu/Start_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/Start_menu/Start_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Start_menu/Start_menu.ui" beforeDir="false" afterPath="$PROJECT_DIR$/View/Start_menu/Start_menu.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stylesheet.py" beforeDir="false" afterPath="$PROJECT_DIR$/stylesheet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -395,7 +329,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738647275421</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="newContainer">
+      <option name="closed" value="true" />
+      <created>1740403517579</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1740403517579</updated>
+    </task>
+    <task id="LOCAL-00013" summary="user_usb">
+      <option name="closed" value="true" />
+      <created>1740403550334</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1740403550334</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -419,7 +369,8 @@
     <MESSAGE value="Szi" />
     <MESSAGE value="Szi-ok" />
     <MESSAGE value="newContainer" />
-    <option name="LAST_COMMIT_MESSAGE" value="newContainer" />
+    <MESSAGE value="user_usb" />
+    <option name="LAST_COMMIT_MESSAGE" value="user_usb" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

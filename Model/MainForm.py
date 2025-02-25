@@ -37,6 +37,8 @@ class MainForm(QtWidgets.QMainWindow):
         width = QtWidgets.qApp.desktop().availableGeometry(self).width()  # Устанавливаем размер долей рабочих панелей
         self.ui.splitter.setSizes([width * 1 / 3, width * 2 / 3])
 
+
+
     def update_tw_mainList(self, sql_data, id_selected=None):
         selected_row = True
         count_items = sql_data.count()

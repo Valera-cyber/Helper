@@ -4,10 +4,11 @@ from PyQt5.QtWidgets import QMessageBox
 
 from Model.MainForm import MainForm
 from ViewModel.Equipment.equipment_main import Equipment_main
+from ViewModel.InfSystem.InfSysMainForm import InfSysMainForm
 from ViewModel.Skr.skr_main import Skr_main
 from ViewModel.Szi.szi_main import Szi_main
 from ViewModel.Usb.UsbMainForm import UsbMainForm
-from ViewModel.Usb.usb_main import Usb_main
+
 from ViewModel.User.UserMainForm import UserMainForm
 
 
@@ -33,6 +34,7 @@ class StartMenu(QtWidgets.QMainWindow):
             self.ui.btn_equipment.clicked.connect(self.clicked_btn_equipment)
             self.ui.btn_skr.clicked.connect(self.clicked_btn_skr)
             self.ui.btn_szi.clicked.connect(self.clicked_btn_szi)
+            self.ui.btn_system.clicked.connect(self.clicked_btn_system)
 
             self.path_helper = (os.path.abspath(os.getcwd()))
 
@@ -43,6 +45,9 @@ class StartMenu(QtWidgets.QMainWindow):
             QMessageBox.warning(self, 'Внимание', str(e), QMessageBox.Ok)
 
 
+    def clicked_btn_system(self):
+        self.inf_ysytem_form=InfSysMainForm()
+        self.inf_ysytem_form.show()
 
     def clicked_btn_szi(self):
 
